@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ app_name }} - Cấu hình theo dõi</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <div class="page-bg"></div>
+    <main class="layout">
+      <section class="panel hero">
+        <h1>Cấu hình danh sách theo dõi</h1>
+        <p>Nơi quản lý watchlist để theo dõi và nhận khuyến nghị mua/bán. Màn này không có rule.</p>
+        <div class="actions" style="margin-top: 12px">
+          <a class="link-btn" href="/stocks">Về danh sách mã</a>
+          <a class="link-btn" href="/settings/holdings">Sang màn nắm giữ</a>
+        </div>
+      </section>
+
+      <section class="grid">
+        <article class="panel">
+          <form id="watchlistForm">
+            <div class="field-row">
+              <label>Danh sách theo dõi</label>
+              <div class="helper-text">Thêm từng mã để hệ thống ưu tiên phân tích và khuyến nghị mua/bán. Giá hiển thị theo nghìn đồng/cp; dòng tiền hiển thị theo tỷ đồng.</div>
+              <div class="field-row" style="margin: 6px 0 8px">
+                <label>Chọn nhiều mã nhanh</label>
+                <select id="quickSymbolSelect" class="multi-select" multiple></select>
+                <div class="helper-text">Giữ Ctrl (Windows) hoặc Command (Mac) để chọn nhiều mã cùng lúc.</div>
+                <button id="addSelectedBtn" type="button" class="secondary">+ Thêm các mã đã chọn</button>
+              </div>
+              <div id="watchlistList" class="editable-list"></div>
+              <button id="addWatchlistBtn" type="button" class="secondary">+ Thêm mã theo dõi</button>
+              <div id="watchlistChips" class="chip-wrap"></div>
+            </div>
+
+            <div class="actions">
+              <button type="submit">Lưu cấu hình theo dõi</button>
+              <button id="runEtlBtn" type="button" class="secondary">Cập nhật dữ liệu</button>
+              <button id="runAdviceBtn" type="button" class="secondary">Tạo khuyến nghị</button>
+            </div>
+          </form>
+          <pre id="actionResult" class="result-box">Sẵn sàng.</pre>
+        </article>
+
+        <article class="panel">
+          <h2>Chi tiết nhanh mã đang chọn</h2>
+          <div id="symbolDetailCard" class="card muted">Bấm vào mã trong danh sách theo dõi để xem chi tiết.</div>
+        </article>
+      </section>
+    </main>
+
+    <script src="/static/ui_cache.js"></script>
+    <script src="/static/settings_watchlist.js"></script>
+  </body>
+</html>

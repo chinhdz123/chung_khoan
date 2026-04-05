@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ app_name }}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <div class="page-bg"></div>
+    <main class="layout">
+      <section class="panel hero">
+        <h1>{{ app_name }} - Cấu hình</h1>
+        <p>
+          Kỷ luật mua bán theo rule. Dữ liệu chạy mỗi ngày lúc 15:30, bản tin AI lúc 06:00 (chỉ gọi khi có biến động đáng kể).
+        </p>
+        <div class="hero-badges">
+          <span id="healthBadge">Hệ thống: đang kiểm tra...</span>
+          <span id="updateBadge">Cập nhật gần nhất: -</span>
+        </div>
+        <div class="actions" style="margin-top: 12px">
+          <a class="link-btn" href="/stocks">Mở màn danh sách</a>
+        </div>
+      </section>
+
+      <section class="grid">
+        <article class="panel">
+          <h2>Template Danh Mục</h2>
+          <form id="templateForm">
+            <div class="field-row">
+              <label>Tiền mặt</label>
+              <input id="cash" type="number" min="0" step="1000" />
+            </div>
+            <div class="field-row">
+              <label>Watchlist</label>
+              <div class="helper-text">Thêm từng mã, sau đó bấm vào chip để xem chi tiết nhanh.</div>
+              <div id="watchlistList" class="editable-list"></div>
+              <button id="addWatchlistBtn" type="button" class="secondary">+ Thêm mã watchlist</button>
+              <div id="watchlistChips" class="chip-wrap"></div>
+            </div>
+            <div class="field-row">
+              <label>Danh mục đang nắm giữ</label>
+              <div class="helper-text">Nhập theo dòng rõ ràng: mã, số lượng, giá vốn trung bình.</div>
+              <div id="positionsList" class="editable-list"></div>
+              <button id="addPositionBtn" type="button" class="secondary">+ Thêm vị thế</button>
+            </div>
+            <div class="field-row">
+              <label>Chi tiết mã đang chọn</label>
+              <div id="symbolDetailCard" class="card muted">Bấm vào mã trong watchlist để xem giá, dòng tiền và chỉ số cơ bản.</div>
+            </div>
+
+            <div class="field-row">
+              <label>Rule kỷ luật theo từng mã</label>
+              <div class="helper-text">
+                Không dùng rule chung. Mỗi mã có rule riêng gồm <b>Ngừng tích sản</b> và <b>Chốt lời</b>.
+              </div>
+              <div id="symbolRuleList" class="symbol-rule-list"></div>
+              <button id="addSymbolRuleBtn" type="button" class="secondary">+ Thêm rule theo mã</button>
+            </div>
+
+            <div class="actions">
+              <button type="submit">Lưu Template</button>
+              <button id="runEtlBtn" type="button" class="secondary">Cập nhật dữ liệu cuối ngày (15:30)</button>
+              <button id="runAdviceBtn" type="button" class="secondary">Tạo báo cáo khuyến nghị (06:00)</button>
+            </div>
+          </form>
+          <pre id="actionResult" class="result-box">Sẵn sàng.</pre>
+        </article>
+
+        <article class="panel">
+          <h2>Báo Cáo Mới Nhất</h2>
+          <div id="adviceSummary" class="card muted">Chưa có dữ liệu.</div>
+          <h3>Top quyết định</h3>
+          <div id="decisions" class="list"></div>
+          <h3>Rủi ro danh mục</h3>
+          <div id="portfolioHealth" class="card muted">Chưa có dữ liệu.</div>
+        </article>
+
+        <article class="panel">
+          <h2>Cảnh Báo</h2>
+          <div id="alerts" class="list"></div>
+        </article>
+      </section>
+    </main>
+
+    <script src="/static/ui_cache.js"></script>
+    <script src="/static/app.js"></script>
+  </body>
+</html>

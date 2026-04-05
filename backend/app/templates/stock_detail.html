@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ app_name }} - Chi tiết {{ symbol }}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <div class="page-bg"></div>
+    <main class="layout" data-symbol="{{ symbol }}" id="detailPage">
+      <section class="panel hero">
+        <h1>Chi tiết mã {{ symbol }}</h1>
+        <p>Màn hình chi tiết để xem giá, dòng tiền, chỉ số cơ bản, khuyến nghị và cảnh báo.</p>
+        <div class="actions" style="margin-top: 12px">
+          <a class="link-btn" href="/stocks">Quay về danh sách</a>
+          <a class="link-btn" href="/stocks">Theo dõi + thêm mã</a>
+          <a class="link-btn" href="/settings/holdings">Cấu hình nắm giữ</a>
+        </div>
+      </section>
+
+      <section class="grid-detail">
+        <article class="panel">
+          <h2>Thị trường</h2>
+          <p class="helper-text">
+            Khu vực này chỉ giữ <b>giá đóng cửa</b> để theo dõi nhanh.
+            Dòng tiền chi tiết xem ở bảng <b>Lịch sử các phiên gần nhất</b> phía dưới, theo đơn vị <b>tỷ đồng</b>.
+            Quy ước hiển thị số: nhóm nghìn bằng <b>dấu chấm</b>, phần thập phân bằng <b>dấu phẩy</b>.
+          </p>
+          <div id="marketCard" class="card muted">Đang tải...</div>
+        </article>
+
+        <article class="panel">
+          <h2>Chỉ số cơ bản</h2>
+          <div id="financialCard" class="card muted">Đang tải...</div>
+        </article>
+
+        <article class="panel">
+          <h2>Cổ tức tham khảo</h2>
+          <div id="annualQualityCard" class="card muted">Đang tải...</div>
+        </article>
+
+        <article class="panel">
+          <h2>Khuyến nghị cho mã này</h2>
+          <div id="decisionCard" class="card muted">Đang tải...</div>
+        </article>
+
+        <article class="panel">
+          <h2>Cảnh báo gần đây</h2>
+          <div id="alertsCard" class="list"></div>
+        </article>
+
+        <article class="panel" style="grid-column: 1 / -1">
+          <h2>Lịch sử các phiên gần nhất</h2>
+          <div class="actions" style="margin-bottom: 10px">
+            <label for="daysSelect">Số ngày gần nhất:</label>
+            <select id="daysSelect">
+              <option value="5">5 ngày</option>
+              <option value="10">10 ngày</option>
+              <option value="20">20 ngày</option>
+              <option value="30">1 tháng (~30 ngày)</option>
+              <option value="60">2 tháng (~60 ngày)</option>
+            </select>
+          </div>
+          <div id="historyFlowSummary" class="card muted" style="margin-bottom: 10px">
+            Chọn số ngày để xem tổng dòng tiền ngoại/tự doanh theo kỳ.
+          </div>
+          <div class="table-wrap">
+            <table class="stock-table">
+              <thead>
+                <tr>
+                  <th>Phiên</th>
+                  <th title="Giá mở cửa của phiên">Mở cửa (nghìn)</th>
+                  <th title="Giá cao nhất trong phiên">Cao nhất (nghìn)</th>
+                  <th title="Giá thấp nhất trong phiên">Thấp nhất (nghìn)</th>
+                  <th title="Giá đóng cửa của phiên">Đóng cửa (nghìn)</th>
+                  <th title="% thay đổi giá đóng cửa so với phiên trước">Biến động (%)</th>
+                  <th title="Khối lượng khớp lệnh theo số cổ phiếu">Khối lượng (cp)</th>
+                  <th title="Giá trị mua ròng của khối ngoại (mua - bán)">Ngoại ròng (tỷ đồng)</th>
+                  <th title="Giá trị mua ròng của khối tự doanh công ty chứng khoán">Tự doanh ròng (tỷ đồng)</th>
+                  <th title="Ước tính giao dịch nhỏ lẻ = tổng GTGD - ngoại ròng - tự doanh ròng">Nhỏ lẻ ước tính (tỷ đồng)</th>
+                </tr>
+              </thead>
+              <tbody id="historyTableBody"></tbody>
+            </table>
+          </div>
+          <div id="historyEmpty" class="card muted" style="display:none">Chưa có dữ liệu lịch sử.</div>
+        </article>
+      </section>
+    </main>
+
+    <script src="/static/manual_reco_data.js"></script>
+    <script src="/static/ui_cache.js"></script>
+    <script src="/static/stock_detail.js"></script>
+  </body>
+</html>

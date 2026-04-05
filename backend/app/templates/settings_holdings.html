@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ app_name }} - Cấu hình nắm giữ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <div class="page-bg"></div>
+    <main class="layout layout-wide">
+      <section class="panel hero">
+        <h1>Cấu hình danh sách nắm giữ</h1>
+        <p>Nơi cập nhật tiền mặt và các vị thế đang nắm giữ thực tế.</p>
+        <div class="actions" style="margin-top: 12px">
+          <a class="link-btn" href="/stocks">Về danh sách mã</a>
+          <a class="link-btn" href="/stocks">Sang màn theo dõi</a>
+        </div>
+      </section>
+
+      <section class="grid">
+        <article class="panel holdings-main-panel">
+          <form id="holdingsForm">
+            <div class="field-row">
+              <label>Tiền mặt hiện tại</label>
+              <input id="cash" type="number" min="0" step="1000" />
+              <div class="helper-text">Đơn vị: ₫</div>
+            </div>
+
+            <div class="field-grid">
+              <div class="field-row">
+                <label title="Tỷ trọng tiền mặt bạn muốn duy trì trong tổng tài sản">Tỷ lệ tiền mặt mục tiêu</label>
+                <input id="target_cash_ratio" type="number" min="0" max="1" step="0.01" />
+              </div>
+              <div class="field-row">
+                <label title="Tỷ trọng cổ phiếu mục tiêu = 1 - tỷ lệ tiền mặt mục tiêu">Tỷ lệ cổ phiếu mục tiêu</label>
+                <input id="target_stock_ratio" type="number" min="0" max="1" step="0.01" />
+              </div>
+              <div class="field-row">
+                <label title="Tỷ trọng nhóm tấn công trong phần cổ phiếu">Tỷ trọng nhóm Tấn công</label>
+                <input id="target_attack_stock_ratio" type="number" min="0" max="1" step="0.01" />
+              </div>
+              <div class="field-row">
+                <label title="Tỷ trọng nhóm cân bằng trong phần cổ phiếu">Tỷ trọng nhóm Cân bằng</label>
+                <input id="target_balance_stock_ratio" type="number" min="0" max="1" step="0.01" />
+              </div>
+              <div class="field-row">
+                <label title="Tỷ trọng nhóm phòng thủ trong phần cổ phiếu">Tỷ trọng nhóm Phòng thủ</label>
+                <input id="target_defense_stock_ratio" type="number" min="0" max="1" step="0.01" />
+              </div>
+            </div>
+            <div class="helper-text">
+              Nếu tỷ lệ cổ phiếu thực tế thấp hơn mục tiêu, hệ thống cảnh báo mua thêm. Nếu cao hơn mục tiêu, hệ thống cảnh báo chốt bớt.
+              Ba tỷ trọng tấn công/cân bằng/phòng thủ sẽ được tự chuẩn hóa để tổng bằng 100% phần cổ phiếu.
+            </div>
+
+            <div class="field-row">
+              <label>Danh sách nắm giữ</label>
+              <div class="helper-text">Chia theo 3 nhóm tấn công / cân bằng / phòng thủ giống bảng tham khảo. Có thể kéo-thả một dòng vị thế sang nhóm khác. Các mức giá dùng đơn vị nghìn đồng/cp.</div>
+              <div class="holdings-group-grid">
+                <div class="holdings-group-card attack" data-group="attack">
+                  <div class="holdings-group-title">Nhóm Tấn công</div>
+                  <div id="positionsListAttack" class="editable-list" data-group="attack"></div>
+                  <button id="addPositionBtnAttack" type="button" class="secondary">+ Thêm vị thế tấn công</button>
+                </div>
+                <div class="holdings-group-card balance" data-group="balance">
+                  <div class="holdings-group-title">Nhóm Cân bằng</div>
+                  <div id="positionsListBalance" class="editable-list" data-group="balance"></div>
+                  <button id="addPositionBtnBalance" type="button" class="secondary">+ Thêm vị thế cân bằng</button>
+                </div>
+                <div class="holdings-group-card defense" data-group="defense">
+                  <div class="holdings-group-title">Nhóm Phòng thủ</div>
+                  <div id="positionsListDefense" class="editable-list" data-group="defense"></div>
+                  <button id="addPositionBtnDefense" type="button" class="secondary">+ Thêm vị thế phòng thủ</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="actions">
+              <button type="submit">Lưu cấu hình nắm giữ</button>
+              <button id="runEtlBtn" type="button" class="secondary">Lấy dữ liệu thị trường</button>
+              <button id="runAdviceBtn" type="button" class="secondary">Tạo khuyến nghị</button>
+            </div>
+          </form>
+          <pre id="actionResult" class="result-box">Sẵn sàng.</pre>
+        </article>
+
+        <article class="panel">
+          <h2>Tỷ lệ tài sản hiện tại</h2>
+          <div id="allocationCard" class="card muted">Đang tải...</div>
+
+          <h2>Rủi ro danh mục</h2>
+          <div id="healthCard" class="card muted">Chưa có dữ liệu.</div>
+        </article>
+      </section>
+    </main>
+
+    <script src="/static/manual_reco_data.js"></script>
+    <script src="/static/ui_cache.js"></script>
+    <script src="/static/settings_holdings.js"></script>
+  </body>
+</html>
