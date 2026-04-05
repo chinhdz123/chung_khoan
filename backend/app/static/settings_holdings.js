@@ -6,7 +6,6 @@ const addPositionBtnAttack = document.getElementById("addPositionBtnAttack");
 const addPositionBtnBalance = document.getElementById("addPositionBtnBalance");
 const addPositionBtnDefense = document.getElementById("addPositionBtnDefense");
 const allocationCard = document.getElementById("allocationCard");
-const healthCard = document.getElementById("healthCard");
 const targetCashInput = document.getElementById("target_cash_ratio");
 const targetStockInput = document.getElementById("target_stock_ratio");
 const targetAttackInput = document.getElementById("target_attack_stock_ratio");
@@ -133,8 +132,11 @@ function collectCurrentGroupStockRatios() {
   };
 }
 
-function setResult(text) {
+function setResult(text, type = "info") {
   actionResult.textContent = text;
+  if (window.Toast && text && text !== "Sẵn sàng.") {
+    window.Toast[type] ? window.Toast[type](text) : window.Toast.info(text);
+  }
 }
 
 function normalizeSymbol(value) {
@@ -486,7 +488,7 @@ async function saveConfig(event) {
   });
   const data = await res.json();
   if (!res.ok) {
-    setResult(`Lưu thất bại: ${JSON.stringify(data)}`);
+    setResult(`Lưu thất bại: ${JSON.stringify(data)}`, "error");
     return;
   }
   document.getElementById("cash").value = data.cash ?? 0;
@@ -496,10 +498,9 @@ async function saveConfig(event) {
   targetBalanceInput.value = data.target_balance_stock_ratio ?? 0.33;
   targetDefenseInput.value = data.target_defense_stock_ratio ?? 0.33;
   loadPositionRows(data.positions || [], data.symbol_rules || []);
-  invalidateCachePrefixes(["portfolio:holdings-config", "portfolio:allocation", "portfolio:health"]);
-  setResult("Đã lưu cấu hình nắm giữ thành công.");
-  await loadAllocation({ bypassCache: true });
-  await loadPortfolioHealth({ bypassCache: true });
+  invalidateCachePrefixes(["portfolio:holdings-config", "portfolio:allocation"]);
+  setResult("Đã lưu cấu hình nắm giữ thành công.", "success");
+  await updateDashboard({ bypassCache: true });
 }
 
 async function triggerEtl() {
@@ -512,149 +513,93 @@ async function triggerEtl() {
   });
   const saveData = await saveRes.json();
   if (!saveRes.ok) {
-    setResult(`Lưu thất bại: ${JSON.stringify(saveData)}`);
+    setResult(`Lưu thất bại: ${JSON.stringify(saveData)}`, "error");
     return;
   }
 
   const etlRes = await fetch("/api/jobs/refresh-market", { method: "POST" });
   const etlData = await etlRes.json();
   if (!etlRes.ok) {
-    setResult(`Tác vụ ETL lỗi: ${JSON.stringify(etlData)}`);
+    setResult(`Tác vụ ETL lỗi: ${JSON.stringify(etlData)}`, "error");
     return;
   }
 
   const errors = etlData?.details?.errors || [];
   const marketSkipped = Number(etlData?.details?.market_skipped || 0);
   if (!etlData.ok || errors.length) {
-    setResult(`Đã lấy dữ liệu nhưng có ${errors.length} lỗi nguồn dữ liệu. Vẫn cập nhật được phần còn lại.`);
+    setResult(`Đã lấy dữ liệu nhưng có ${errors.length} lỗi nguồn dữ liệu. Vẫn cập nhật được phần còn lại.`, "warning");
   } else if (marketSkipped > 0) {
     setResult(`Đã bỏ qua ${marketSkipped} mã vì đã cập nhật trong ngày.`);
   } else {
-    setResult("Đã lấy dữ liệu thị trường thành công.");
+    setResult("Đã lấy dữ liệu thị trường thành công.", "success");
   }
 
   invalidateCachePrefixes([
     "portfolio:holdings-config",
     "portfolio:allocation",
-    "portfolio:health",
     "market:snapshot:",
     "market:history:",
   ]);
   await loadConfig({ bypassCache: true });
-  await loadAllocation({ bypassCache: true });
-  await loadPortfolioHealth({ bypassCache: true });
+  await updateDashboard({ bypassCache: true });
 }
 
-async function loadPortfolioHealth(options = {}) {
+let lastAllocationData = null;
+
+async function updateDashboard(options = {}) {
+  await fetchAllocationData(options);
+  renderAllocationCard();
+}
+
+async function fetchAllocationData(options) {
   try {
-    const data = await cachedGetJson("/api/portfolio/health", "portfolio:health", 45000, options);
-    const warnings = Array.isArray(data.warnings) ? data.warnings : [];
-    const suggestions = Array.isArray(data.suggestions) ? data.suggestions : [];
-    healthCard.className = "card";
-    healthCard.innerHTML = `
-      <div><b>Ngày:</b> ${data.snapshot_date}</div>
-      <div><b>Điểm rủi ro:</b> ${data.risk_score}/100</div>
-      <div class="notice-group">
-        <div class="notice-title">Cảnh báo</div>
-        ${renderNoticeList(warnings, "warning", "Không có cảnh báo")}
-      </div>
-      <div class="notice-group">
-        <div class="notice-title">Khuyến nghị</div>
-        ${renderNoticeList(suggestions, "recommend", "Không có khuyến nghị")}
-      </div>
-    `;
+    lastAllocationData = await cachedGetJson("/api/portfolio/allocation", "portfolio:allocation", 30000, options);
   } catch (err) {
-    healthCard.className = "card muted";
-    healthCard.textContent = `Lỗi tải rủi ro danh mục: ${err.message}`;
+    lastAllocationData = { error: err.message };
   }
 }
 
 async function loadAllocation(options = {}) {
-  try {
-    const data = await cachedGetJson("/api/portfolio/allocation", "portfolio:allocation", 30000, options);
-    const stockPct = formatPercent(Number(data.stock_ratio || 0) * 100);
-    const cashPct = formatPercent(Number(data.cash_ratio || 0) * 100);
-    const targetStockPct = formatPercent(Number(data.target_stock_ratio || 0) * 100);
-    const targetCashPct = formatPercent(Number(data.target_cash_ratio || 0) * 100);
-    const gapPct = formatPercent(Number(data.ratio_gap || 0) * 100);
-    const groupTargets = normalizeStockGroupRatios(targetAttackInput.value, targetBalanceInput.value, targetDefenseInput.value);
-    const currentGroups = collectCurrentGroupStockRatios();
-    const attackPct = formatPercent(groupTargets.attack * 100);
-    const balancePct = formatPercent(groupTargets.balance * 100);
-    const defensePct = formatPercent(groupTargets.defense * 100);
-    const currentAttackPct = formatPercent(currentGroups.ratios.attack * 100);
-    const currentBalancePct = formatPercent(currentGroups.ratios.balance * 100);
-    const currentDefensePct = formatPercent(currentGroups.ratios.defense * 100);
-
-    const groupWarnings = [];
-    GROUP_KEYS.forEach((group) => {
-      const current = Number(currentGroups.ratios[group] || 0);
-      const target = Number(groupTargets[group] || 0);
-      const diff = current - target;
-      if (Math.abs(diff) >= GROUP_RATIO_WARN_TOLERANCE) {
-        const direction = diff > 0 ? "cao hơn" : "thấp hơn";
-        groupWarnings.push(
-          `Nhóm ${GROUP_LABELS[group]} đang ${direction} mục tiêu ${formatPercent(Math.abs(diff) * 100)} điểm % ` +
-            `(hiện tại ${formatPercent(current * 100)}%, mục tiêu ${formatPercent(target * 100)}%).`
-        );
-      }
-    });
-    const groupBalanceText =
-      currentGroups.total > 0
-        ? `Tấn công ${currentAttackPct}% | Cân bằng ${currentBalancePct}% | Phòng thủ ${currentDefensePct}%`
-        : "Chưa đủ dữ liệu giá hiện tại để tính tỷ trọng theo nhóm.";
-
-    let statusText = "Danh mục đang sát tỷ lệ mục tiêu.";
-    let statusType = "recommend";
-    if (Number(data.ratio_gap) < -0.01) {
-      statusText = "Tỷ lệ cổ phiếu thấp hơn mục tiêu, cân nhắc mua thêm.";
-      statusType = "warning";
-    } else if (Number(data.ratio_gap) > 0.01) {
-      statusText = "Tỷ lệ cổ phiếu cao hơn mục tiêu, cân nhắc bán bớt.";
-      statusType = "warning";
-    }
-
-    allocationCard.className = "card";
-    allocationCard.innerHTML = `
-      <div><b>Tổng tài sản:</b> ${formatNumber(data.total_assets || 0)} ₫</div>
-      <div><b>Tiền mặt:</b> ${formatNumber(data.cash || 0)} ₫ (${cashPct}%)</div>
-      <div><b>Cổ phiếu:</b> ${formatNumber(data.stock_value || 0)} ₫ (${stockPct}%)</div>
-      <div class="muted">Các giá theo đơn vị nghìn đồng/cp; hệ thống quy đổi ra ₫ khi tính tổng tài sản.</div>
-      <div><b>Mục tiêu:</b> Tiền ${targetCashPct}% / Cổ phiếu ${targetStockPct}%</div>
-      <div><b>Phân bổ mục tiêu trong phần cổ phiếu:</b> Tấn công ${attackPct}% | Cân bằng ${balancePct}% | Phòng thủ ${defensePct}%</div>
-      <div><b>Phân bổ hiện tại trong phần cổ phiếu:</b> ${groupBalanceText}</div>
-      <div><b>Độ lệch cổ phiếu:</b> ${gapPct}%</div>
-      <div class="notice-group">
-        ${renderNoticeList([statusText], statusType, "")}
-      </div>
-      <div class="notice-group">
-        <div class="notice-title">Cảnh báo lệch nhóm cổ phiếu</div>
-        ${renderNoticeList(groupWarnings, groupWarnings.length ? "warning" : "recommend", "Phân bổ nhóm đang sát mục tiêu cấu hình")}
-      </div>
-    `;
-  } catch (err) {
-    allocationCard.className = "card muted";
-    allocationCard.textContent = `Lỗi tải tỷ lệ tài sản: ${err.message}`;
-  }
+  await fetchAllocationData(options);
+  renderAllocationCard();
 }
 
-async function triggerAdvice() {
-  setResult("Đang tạo khuyến nghị...");
-  const res = await fetch("/api/jobs/run-advice", { method: "POST" });
-  const data = await res.json();
-  if (!res.ok) {
-    setResult(`Tác vụ lỗi: ${JSON.stringify(data)}`);
+function renderAllocationCard() {
+  if (!lastAllocationData || lastAllocationData.error) {
+    allocationCard.className = "card muted";
+    allocationCard.textContent = `Lỗi tải tỷ lệ tài sản: ${lastAllocationData?.error || "Unknown error"}`;
     return;
   }
-  invalidateCachePrefixes(["advice:latest", "portfolio:health", "portfolio:allocation", "alerts:list"]);
-  setResult(JSON.stringify(data, null, 2));
-  await loadAllocation({ bypassCache: true });
-  await loadPortfolioHealth({ bypassCache: true });
+  
+  const data = lastAllocationData;
+  const stockPct = formatPercent(Number(data.stock_ratio || 0) * 100);
+  const cashPct = formatPercent(Number(data.cash_ratio || 0) * 100);
+  const targetStockPct = formatPercent(Number(data.target_stock_ratio || 0) * 100);
+  const targetCashPct = formatPercent(Number(data.target_cash_ratio || 0) * 100);
+  const groupTargets = normalizeStockGroupRatios(targetAttackInput.value, targetBalanceInput.value, targetDefenseInput.value);
+  const currentGroups = collectCurrentGroupStockRatios();
+  const attackPct = formatPercent(groupTargets.attack * 100);
+  const balancePct = formatPercent(groupTargets.balance * 100);
+  const defensePct = formatPercent(groupTargets.defense * 100);
+  const currentAttackPct = formatPercent(currentGroups.ratios.attack * 100);
+  const currentBalancePct = formatPercent(currentGroups.ratios.balance * 100);
+  const currentDefensePct = formatPercent(currentGroups.ratios.defense * 100);
+
+  allocationCard.className = "card";
+  allocationCard.innerHTML = `
+    <div><b>Tổng tài sản:</b> ${formatNumber(data.total_assets || 0)} ₫</div>
+    <div><b>Tiền mặt:</b> ${formatNumber(data.cash || 0)} ₫ (${cashPct}%) | mục tiêu ${targetCashPct}%</div>
+    <div><b>Cổ phiếu:</b> ${formatNumber(data.stock_value || 0)} ₫ (${stockPct}%) | mục tiêu ${targetStockPct}%</div>
+    <br/>
+    <div><b>Phân bổ cổ phiếu:</b></div>
+    <div style="padding-left: 10px;">- Tấn công ${currentAttackPct}% | mục tiêu ${attackPct}%</div>
+    <div style="padding-left: 10px;">- Cân bằng ${currentBalancePct}% | mục tiêu ${balancePct}%</div>
+    <div style="padding-left: 10px;">- Phòng thủ ${currentDefensePct}% | mục tiêu ${defensePct}%</div>
+  `;
 }
 
 document.getElementById("holdingsForm").addEventListener("submit", saveConfig);
 document.getElementById("runEtlBtn").addEventListener("click", triggerEtl);
-document.getElementById("runAdviceBtn").addEventListener("click", triggerAdvice);
 if (addPositionBtnAttack) addPositionBtnAttack.addEventListener("click", () => addPositionRow({}, "attack"));
 if (addPositionBtnBalance) addPositionBtnBalance.addEventListener("click", () => addPositionRow({}, "balance"));
 if (addPositionBtnDefense) addPositionBtnDefense.addEventListener("click", () => addPositionRow({}, "defense"));
@@ -691,8 +636,7 @@ async function bootstrap() {
     setResult(err.message);
     loadPositionRows([], []);
   }
-  await loadAllocation();
-  await loadPortfolioHealth();
+  await updateDashboard();
 }
 
 bootstrap();

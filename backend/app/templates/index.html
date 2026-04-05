@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{{ app_name }}</title>
+    <meta name="description" content="KyLuat DauTu — Web app hỗ trợ kỷ luật mua bán cổ phiếu theo rule" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -11,22 +12,30 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="/static/styles.css" />
+    <script src="/static/navbar.js"></script>
   </head>
   <body>
     <div class="page-bg"></div>
+
+    <nav class="top-nav">
+      <div class="top-nav-inner">
+        <a class="nav-brand" href="/stocks">KyLuat DauTu</a>
+        <button class="nav-hamburger" id="navHamburger" aria-label="Menu" aria-expanded="false">☰</button>
+        <div class="nav-links" id="navLinks">
+          <a class="nav-link" href="/stocks">Danh sách</a>
+          <a class="nav-link" href="/settings/holdings">Nắm giữ</a>
+        </div>
+        <div class="nav-actions">
+          <button class="theme-toggle" id="themeToggle" aria-label="Chuyển theme">🌙</button>
+        </div>
+      </div>
+    </nav>
+
     <main class="layout">
       <section class="panel hero">
         <h1>{{ app_name }} - Cấu hình</h1>
         <p>
           Kỷ luật mua bán theo rule. Dữ liệu chạy mỗi ngày lúc 15:30, bản tin AI lúc 06:00 (chỉ gọi khi có biến động đáng kể).
-        </p>
-        <div class="hero-badges">
-          <span id="healthBadge">Hệ thống: đang kiểm tra...</span>
-          <span id="updateBadge">Cập nhật gần nhất: -</span>
-        </div>
-        <div class="actions" style="margin-top: 12px">
-          <a class="link-btn" href="/stocks">Mở màn danh sách</a>
-        </div>
       </section>
 
       <section class="grid">
@@ -67,7 +76,6 @@
             <div class="actions">
               <button type="submit">Lưu Template</button>
               <button id="runEtlBtn" type="button" class="secondary">Cập nhật dữ liệu cuối ngày (15:30)</button>
-              <button id="runAdviceBtn" type="button" class="secondary">Tạo báo cáo khuyến nghị (06:00)</button>
             </div>
           </form>
           <pre id="actionResult" class="result-box">Sẵn sàng.</pre>
@@ -89,6 +97,7 @@
       </section>
     </main>
 
+    <script src="/static/toast.js"></script>
     <script src="/static/ui_cache.js"></script>
     <script src="/static/app.js"></script>
   </body>

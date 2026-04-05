@@ -36,8 +36,11 @@ function invalidateCachePrefixes(prefixes = []) {
   prefixes.forEach((prefix) => window.UiCache.invalidatePrefix(prefix));
 }
 
-function setResult(text) {
+function setResult(text, type = "info") {
   actionResult.textContent = text;
+  if (window.Toast && text && text !== "Sẵn sàng.") {
+    window.Toast[type] ? window.Toast[type](text) : window.Toast.info(text);
+  }
 }
 
 function normalizeSymbol(value) {
@@ -309,10 +312,10 @@ function fillTemplateForm(data) {
 async function fetchHealth() {
   try {
     const data = await cachedGetJson("/api/health", "api:health", 15000);
-    healthBadge.textContent = `Hệ thống: ${data.ok ? "hoạt động" : "lỗi"}`;
-    updateBadge.textContent = `Thời gian máy chủ: ${data.time}`;
+    if (healthBadge) healthBadge.textContent = `Hệ thống: ${data.ok ? "hoạt động" : "lỗi"}`;
+    if (updateBadge) updateBadge.textContent = `Thời gian máy chủ: ${data.time}`;
   } catch (err) {
-    healthBadge.textContent = "Hệ thống: không truy cập được";
+    if (healthBadge) healthBadge.textContent = "Hệ thống: không truy cập được";
   }
 }
 
@@ -338,12 +341,12 @@ async function saveTemplate(event) {
 
   const data = await res.json();
   if (!res.ok) {
-    setResult(`Lưu thất bại: ${JSON.stringify(data)}`);
+    setResult(`Lưu thất bại: ${JSON.stringify(data)}`, "error");
     return;
   }
   invalidateCachePrefixes(["portfolio:template", "portfolio:watchlist-config", "portfolio:holdings-config"]);
   fillTemplateForm(data);
-  setResult("Đã lưu template thành công.");
+  setResult("Đã lưu template thành công.", "success");
 }
 
 function renderDecisions(decisions = []) {
@@ -450,7 +453,7 @@ async function triggerJob(endpoint) {
   const res = await fetch(endpoint, { method: "POST" });
   const data = await res.json();
   if (!res.ok) {
-    setResult(`Tác vụ lỗi: ${JSON.stringify(data)}`);
+    setResult(`Tác vụ lỗi: ${JSON.stringify(data)}`, "error");
     return;
   }
   invalidateCachePrefixes([
@@ -470,7 +473,6 @@ async function triggerJob(endpoint) {
 
 document.getElementById("templateForm").addEventListener("submit", saveTemplate);
 document.getElementById("runEtlBtn").addEventListener("click", () => triggerJob("/api/jobs/run-etl"));
-document.getElementById("runAdviceBtn").addEventListener("click", () => triggerJob("/api/jobs/run-advice"));
 
 addWatchlistBtn.addEventListener("click", () => addWatchlistRow());
 addPositionBtn.addEventListener("click", () => addPositionRow());

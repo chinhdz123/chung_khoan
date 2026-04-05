@@ -212,16 +212,16 @@ async function loadHistory(days) {
       const changePct = prevClose > 0 && close > 0 ? ((close - prevClose) / prevClose) * 100 : Number.NaN;
       const tr = document.createElement("tr");
       tr.innerHTML = `
-        <td>${row.snapshot_date || "-"}</td>
-        <td>${formatNumber(row.open_price)}</td>
-        <td>${formatNumber(row.high_price)}</td>
-        <td>${formatNumber(row.low_price)}</td>
-        <td>${formatNumber(row.close_price)}</td>
-        <td>${formatSignedPercent(changePct)}</td>
-        <td>${formatNumber(row.volume)}</td>
-        <td>${formatBillionVnd(row.foreign_net_value)}</td>
-        <td>${formatBillionVnd(row.proprietary_net_value)}</td>
-        <td>${formatBillionVnd(row.retail_estimated_value)}</td>
+        <td data-label="Phiên">${row.snapshot_date || "-"}</td>
+        <td data-label="Mở cửa">${formatNumber(row.open_price)}</td>
+        <td data-label="Cao nhất">${formatNumber(row.high_price)}</td>
+        <td data-label="Thấp nhất">${formatNumber(row.low_price)}</td>
+        <td data-label="Đóng cửa">${formatNumber(row.close_price)}</td>
+        <td data-label="Biến động">${formatSignedPercent(changePct)}</td>
+        <td data-label="KLượng">${formatNumber(row.volume)}</td>
+        <td data-label="Ngoại ròng">${formatBillionVnd(row.foreign_net_value)}</td>
+        <td data-label="Tự doanh ròng">${formatBillionVnd(row.proprietary_net_value)}</td>
+        <td data-label="Nhỏ lẻ">${formatBillionVnd(row.retail_estimated_value)}</td>
       `;
       historyTableBody.appendChild(tr);
     });
@@ -245,5 +245,21 @@ if (daysSelect) {
     loadHistory(Number(daysSelect.value || 5));
   });
 }
+
+// --- Tab Navigation ---
+document.addEventListener("DOMContentLoaded", () => {
+  const tabNav = document.getElementById("detailTabs");
+  if (!tabNav) return;
+  tabNav.querySelectorAll(".tab-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const targetId = btn.dataset.tab;
+      tabNav.querySelectorAll(".tab-btn").forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+      document.querySelectorAll(".tab-content").forEach((tc) => {
+        tc.classList.toggle("active", tc.id === targetId);
+      });
+    });
+  });
+});
 
 bootstrap();

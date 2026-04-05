@@ -56,9 +56,13 @@ function normalizeSymbol(value) {
   return String(value || "").trim().toUpperCase();
 }
 
-function setWatchlistResult(text) {
+function setWatchlistResult(text, type = "info") {
+  const value = String(text || "").trim();
+  if (!value) return;
+  if (window.Toast) {
+    window.Toast[type] ? window.Toast[type](value) : window.Toast.info(value);
+  }
   if (watchlistActionResult) {
-    const value = String(text || "").trim();
     watchlistActionResult.textContent = value;
     watchlistActionResult.style.display = value ? "block" : "none";
   }
@@ -357,14 +361,15 @@ function actionBadge(action) {
 async function fetchHealth(options = {}) {
   try {
     const data = await cachedGetJson("/api/health", "api:health", 15000, options);
-    healthBadge.textContent = `Hệ thống: ${data.ok ? "hoạt động" : "lỗi"}`;
-    updateBadge.textContent = `Thời gian máy chủ: ${data.time}`;
+    if (healthBadge) healthBadge.textContent = `Hệ thống: ${data.ok ? "hoạt động" : "lỗi"}`;
+    if (updateBadge) updateBadge.textContent = `Thời gian máy chủ: ${data.time}`;
   } catch (_) {
-    healthBadge.textContent = "Hệ thống: không truy cập được";
+    if (healthBadge) healthBadge.textContent = "Hệ thống: không truy cập được";
   }
 }
 
 function renderManualSummary(rows) {
+  if (!adviceSummary) return;
   const total = rows.length;
   const withRef = rows.filter((row) => Boolean(getManualReference(row.symbol))).length;
   let buyCount = 0;
@@ -417,20 +422,20 @@ function renderTableForGroup(group, rows) {
     tr.dataset.symbol = normalizeSymbol(row.symbol);
     tr.setAttribute("draggable", "true");
     tr.innerHTML = `
-      <td><b>#${index + 1}</b></td>
-      <td><b>${row.symbol}</b></td>
-      <td>${market.snapshot_date || "-"}</td>
-      <td>${formatNumber(market.close_price)}</td>
-      <td>${formatNumber(ref?.buy_price)}</td>
-      <td>${formatNumber(ref?.sell_price)}</td>
-      <td>${upsideText}</td>
-      <td>${dividendText}</td>
-      <td>${formatBillionVnd(market.foreign_net_value)}</td>
-      <td>${formatBillionVnd(market.proprietary_net_value)}</td>
-      <td>${actionBadge(action)}</td>
-      <td><a class="table-link" href="/stocks/${encodeURIComponent(row.symbol)}">Xem</a></td>
-      <td><button type="button" class="secondary" data-role="refresh-symbol" data-symbol="${row.symbol}">Cập nhật</button></td>
-      <td><button type="button" class="danger" data-role="remove-symbol" data-symbol="${row.symbol}">Xóa</button></td>
+      <td data-label="Ưu tiên"><b>#${index + 1}</b> <b>${row.symbol}</b></td>
+      <td data-label="Mã"><b>${row.symbol}</b></td>
+      <td data-label="Phiên">${market.snapshot_date || "-"}</td>
+      <td data-label="Giá đóng cửa">${formatNumber(market.close_price)}</td>
+      <td data-label="Giá mua">${formatNumber(ref?.buy_price)}</td>
+      <td data-label="Giá bán">${formatNumber(ref?.sell_price)}</td>
+      <td data-label="Chênh lệch bán">${upsideText}</td>
+      <td data-label="Cổ tức TB">${dividendText}</td>
+      <td data-label="Ngoại ròng">${formatBillionVnd(market.foreign_net_value)}</td>
+      <td data-label="Tự doanh ròng">${formatBillionVnd(market.proprietary_net_value)}</td>
+      <td data-label="Khuyến nghị">${actionBadge(action)}</td>
+      <td data-label="Chi tiết"><a class="table-link" href="/stocks/${encodeURIComponent(row.symbol)}">Xem</a></td>
+      <td data-label="Cập nhật"><button type="button" class="secondary" data-role="refresh-symbol" data-symbol="${row.symbol}">Cập nhật</button></td>
+      <td data-label="Xóa"><button type="button" class="danger" data-role="remove-symbol" data-symbol="${row.symbol}">Xóa</button></td>
     `;
 
     tr.addEventListener("dragstart", (event) => {
@@ -572,7 +577,7 @@ async function runJob(endpoint, button) {
     const res = await fetch(endpoint, { method: "POST" });
     if (!res.ok) {
       const err = await res.text();
-      alert(`Tác vụ lỗi: ${err}`);
+      if (window.Toast) window.Toast.error(`Tác vụ lỗi: ${err}`); else alert(`Tác vụ lỗi: ${err}`);
       return;
     }
     invalidateCachePrefixes(["advice:latest", "portfolio:health", "alerts:list"]);
@@ -612,7 +617,7 @@ async function refreshDataAndAdvice() {
     await loadList({ bypassCache: true });
     await fetchHealth({ bypassCache: true });
   } catch (err) {
-    alert(`Cập nhật dữ liệu thất bại: ${err.message}`);
+    if (window.Toast) window.Toast.error(`Cập nhật dữ liệu thất bại: ${err.message}`); else alert(`Cập nhật dữ liệu thất bại: ${err.message}`);
   } finally {
     runEtlBtn.disabled = false;
     runEtlBtn.textContent = old;

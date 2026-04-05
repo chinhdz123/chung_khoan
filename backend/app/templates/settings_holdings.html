@@ -4,33 +4,45 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{{ app_name }} - Cấu hình nắm giữ</title>
+    <meta name="description" content="Cấu hình danh mục nắm giữ — KyLuat DauTu" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="/static/styles.css" />
+    <link rel="stylesheet" href="/static/styles.css?v=2" />
+    <script src="/static/navbar.js"></script>
   </head>
   <body>
     <div class="page-bg"></div>
+
+    <nav class="top-nav">
+      <div class="top-nav-inner">
+        <a class="nav-brand" href="/stocks">KyLuat DauTu</a>
+        <button class="nav-hamburger" id="navHamburger" aria-label="Menu" aria-expanded="false">☰</button>
+        <div class="nav-links" id="navLinks">
+          <a class="nav-link" href="/stocks">Danh sách</a>
+          <a class="nav-link active" href="/settings/holdings">Nắm giữ</a>
+        </div>
+        <div class="nav-actions">
+          <button class="theme-toggle" id="themeToggle" aria-label="Chuyển theme">🌙</button>
+        </div>
+      </div>
+    </nav>
+
     <main class="layout layout-wide">
       <section class="panel hero">
         <h1>Cấu hình danh sách nắm giữ</h1>
         <p>Nơi cập nhật tiền mặt và các vị thế đang nắm giữ thực tế.</p>
-        <div class="actions" style="margin-top: 12px">
-          <a class="link-btn" href="/stocks">Về danh sách mã</a>
-          <a class="link-btn" href="/stocks">Sang màn theo dõi</a>
-        </div>
       </section>
 
-      <section class="grid">
-        <article class="panel holdings-main-panel">
-          <form id="holdingsForm">
+      <form id="holdingsForm">
+        <section class="grid">
+          <article class="panel">
             <div class="field-row">
-              <label>Tiền mặt hiện tại</label>
+              <label title="Đơn vị: ₫">Tiền mặt hiện tại</label>
               <input id="cash" type="number" min="0" step="1000" />
-              <div class="helper-text">Đơn vị: ₫</div>
             </div>
 
             <div class="field-grid">
@@ -55,54 +67,54 @@
                 <input id="target_defense_stock_ratio" type="number" min="0" max="1" step="0.01" />
               </div>
             </div>
-            <div class="helper-text">
-              Nếu tỷ lệ cổ phiếu thực tế thấp hơn mục tiêu, hệ thống cảnh báo mua thêm. Nếu cao hơn mục tiêu, hệ thống cảnh báo chốt bớt.
-              Ba tỷ trọng tấn công/cân bằng/phòng thủ sẽ được tự chuẩn hóa để tổng bằng 100% phần cổ phiếu.
-            </div>
 
-            <div class="field-row">
-              <label>Danh sách nắm giữ</label>
-              <div class="helper-text">Chia theo 3 nhóm tấn công / cân bằng / phòng thủ giống bảng tham khảo. Có thể kéo-thả một dòng vị thế sang nhóm khác. Các mức giá dùng đơn vị nghìn đồng/cp.</div>
-              <div class="holdings-group-grid">
-                <div class="holdings-group-card attack" data-group="attack">
-                  <div class="holdings-group-title">Nhóm Tấn công</div>
+            <div class="actions" style="margin-top: 16px;">
+              <button type="submit">Lưu cấu hình nắm giữ</button>
+              <button id="runEtlBtn" type="button" class="secondary">Lấy dữ liệu</button>
+            </div>
+            <pre id="actionResult" class="result-box">Sẵn sàng.</pre>
+          </article>
+
+          <article class="panel">
+            <h2>Tỷ lệ tài sản hiện tại</h2>
+            <div id="allocationCard" class="card loading">&nbsp;</div>
+          </article>
+        </section>
+
+        <section class="panel" style="margin-top: 18px;">
+          <div class="field-row" style="margin-bottom: 0;">
+            <label title="Kéo-thả vị thế giữa 3 nhóm. Giá: nghìn đồng/cp." style="font-size: 1.2rem; font-weight: 600; font-family: Fraunces, serif; color: var(--ink); margin-bottom: 12px;">Quản lý mã nắm giữ</label>
+            <div class="holdings-group-grid">
+              <div class="holdings-group-card attack" data-group="attack">
+                <div class="holdings-group-title" data-collapsible>Nhóm Tấn công</div>
+                <div class="holdings-group-content">
                   <div id="positionsListAttack" class="editable-list" data-group="attack"></div>
                   <button id="addPositionBtnAttack" type="button" class="secondary">+ Thêm vị thế tấn công</button>
                 </div>
-                <div class="holdings-group-card balance" data-group="balance">
-                  <div class="holdings-group-title">Nhóm Cân bằng</div>
+              </div>
+              <div class="holdings-group-card balance" data-group="balance">
+                <div class="holdings-group-title" data-collapsible>Nhóm Cân bằng</div>
+                <div class="holdings-group-content">
                   <div id="positionsListBalance" class="editable-list" data-group="balance"></div>
                   <button id="addPositionBtnBalance" type="button" class="secondary">+ Thêm vị thế cân bằng</button>
                 </div>
-                <div class="holdings-group-card defense" data-group="defense">
-                  <div class="holdings-group-title">Nhóm Phòng thủ</div>
+              </div>
+              <div class="holdings-group-card defense" data-group="defense">
+                <div class="holdings-group-title" data-collapsible>Nhóm Phòng thủ</div>
+                <div class="holdings-group-content">
                   <div id="positionsListDefense" class="editable-list" data-group="defense"></div>
                   <button id="addPositionBtnDefense" type="button" class="secondary">+ Thêm vị thế phòng thủ</button>
                 </div>
               </div>
             </div>
-
-            <div class="actions">
-              <button type="submit">Lưu cấu hình nắm giữ</button>
-              <button id="runEtlBtn" type="button" class="secondary">Lấy dữ liệu thị trường</button>
-              <button id="runAdviceBtn" type="button" class="secondary">Tạo khuyến nghị</button>
-            </div>
-          </form>
-          <pre id="actionResult" class="result-box">Sẵn sàng.</pre>
-        </article>
-
-        <article class="panel">
-          <h2>Tỷ lệ tài sản hiện tại</h2>
-          <div id="allocationCard" class="card muted">Đang tải...</div>
-
-          <h2>Rủi ro danh mục</h2>
-          <div id="healthCard" class="card muted">Chưa có dữ liệu.</div>
-        </article>
-      </section>
+          </div>
+        </section>
+      </form>
     </main>
 
-    <script src="/static/manual_reco_data.js"></script>
-    <script src="/static/ui_cache.js"></script>
-    <script src="/static/settings_holdings.js"></script>
+    <script src="/static/toast.js?v=3"></script>
+    <script src="/static/manual_reco_data.js?v=3"></script>
+    <script src="/static/ui_cache.js?v=3"></script>
+    <script src="/static/settings_holdings.js?v=3"></script>
   </body>
 </html>

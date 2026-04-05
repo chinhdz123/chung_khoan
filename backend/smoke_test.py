@@ -135,10 +135,10 @@ def run() -> None:
         assert code == 200 and "stockTableBody" in list_page
 
         code, settings_page = request_text("GET", "/settings")
-        assert code == 200 and "Cấu hình dữ liệu" in settings_page
+        assert code == 200 and "stockTableBody" in settings_page
 
         code, watchlist_settings = request_text("GET", "/settings/watchlist")
-        assert code == 200 and "watchlistForm" in watchlist_settings
+        assert code == 200 and "stockTableBody" in watchlist_settings
 
         code, holdings_settings = request_text("GET", "/settings/holdings")
         assert code == 200 and "holdingsForm" in holdings_settings

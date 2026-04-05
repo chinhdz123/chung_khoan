@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{{ app_name }} - Danh sách mã</title>
+    <meta name="description" content="Danh sách cổ phiếu theo dõi — KyLuat DauTu" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -11,43 +12,41 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="/static/styles.css" />
+    <script src="/static/navbar.js"></script>
   </head>
   <body>
     <div class="page-bg"></div>
-    <main class="layout">
+
+    <nav class="top-nav">
+      <div class="top-nav-inner">
+        <a class="nav-brand" href="/stocks">KyLuat DauTu</a>
+        <button class="nav-hamburger" id="navHamburger" aria-label="Menu" aria-expanded="false">☰</button>
+        <div class="nav-links" id="navLinks">
+          <a class="nav-link active" href="/stocks">Danh sách</a>
+          <a class="nav-link" href="/settings/holdings">Nắm giữ</a>
+        </div>
+        <div class="nav-actions">
+          <button class="theme-toggle" id="themeToggle" aria-label="Chuyển theme">🌙</button>
+        </div>
+      </div>
+    </nav>
+
+    <main class="layout layout-wide">
       <section class="panel hero">
         <h1>Danh sách cổ phiếu theo dõi</h1>
-        <p>Một màn list để quét nhanh danh mục. Bấm vào từng mã để vào màn chi tiết.</p>
-        <div class="hero-badges">
-          <span id="healthBadge">Hệ thống: đang kiểm tra...</span>
-          <span id="updateBadge">Cập nhật gần nhất: -</span>
-        </div>
         <div class="actions" style="margin-top: 12px">
-          <a class="link-btn" href="/settings/holdings">Cấu hình nắm giữ</a>
           <button id="runEtlBtn" type="button" class="secondary">Cập nhật dữ liệu</button>
         </div>
       </section>
 
       <section class="panel">
-        <h2>Tổng quan watchlist</h2>
-        <p class="helper-text">
-          Bảng này hiển thị dữ liệu của <b>phiên gần nhất (1 ngày)</b>.
-          <b>Ngoại ròng</b> = mua - bán của nhà đầu tư nước ngoài; <b>Tự doanh ròng</b> = mua - bán của khối tự doanh công ty chứng khoán.
-          Các mức <b>giá</b> hiển thị theo đơn vị <b>nghìn đồng/cp</b>; dòng tiền hiển thị theo <b>tỷ đồng</b>.
-          Mốc <b>giá mua/bán</b> và <b>cổ tức</b> dùng bộ dữ liệu nhập tay theo bảng tham khảo tháng 04/2026.
-        </p>
+        <h2 title="Dữ liệu phiên gần nhất. Giá: nghìn đồng/cp. Dòng tiền: tỷ đồng. Giá mua/bán & cổ tức từ bảng tham khảo nhập tay.">Tổng quan watchlist</h2>
         <div class="field-row" style="margin-bottom: 10px">
-          <label>Thêm mã vào watchlist</label>
-          <input id="manualSymbolInput" type="text" placeholder="VD: VCB, FPT, HPG" />
-          <div class="helper-text">Có thể nhập nhiều mã, ngăn cách bằng dấu phẩy hoặc khoảng trắng.</div>
+          <input id="manualSymbolInput" type="text" placeholder="Thêm mã (VD: VCB, FPT, HPG — phẩy hoặc khoảng trắng)" />
           <div class="actions" style="margin-top: 6px">
-            <button id="addToWatchlistBtn" type="button">+ Thêm vào watchlist</button>
+            <button id="addToWatchlistBtn" type="button">+ Thêm</button>
           </div>
         </div>
-          <div class="field-row" style="margin-bottom: 10px">
-            <label>Phân nhóm watchlist (kéo-thả)</label>
-            <div class="helper-text">Kéo trực tiếp từng dòng cổ phiếu giữa 3 bảng Tấn công / Cân bằng / Phòng thủ.</div>
-          </div>
           <div class="field-grid" style="margin-bottom: 8px">
             <div class="field-row">
               <label>Sắp xếp watchlist</label>
@@ -60,100 +59,101 @@
               </select>
             </div>
           </div>
-          <pre id="watchlistActionResult" class="result-box" style="margin-bottom: 10px; display: none"></pre>
           <div class="watch-group-stack">
             <div class="holdings-group-card attack watch-table-card" data-group="attack">
-              <div class="holdings-group-title">Nhóm Tấn công</div>
-              <div class="table-wrap">
-                <table class="stock-table">
-                  <thead>
-                    <tr>
-                      <th>Ưu tiên</th>
-                      <th>Mã</th>
-                      <th>Phiên</th>
-                      <th title="Giá đóng cửa phiên gần nhất">Giá đóng cửa (nghìn)</th>
-                      <th title="Giá mua tham khảo nhập tay">Giá mua (nghìn)</th>
-                      <th title="Giá bán tham khảo nhập tay">Giá bán (nghìn)</th>
-                      <th title="(Giá bán - Giá đóng cửa) / Giá đóng cửa">Chênh lệch tới bán (%)</th>
-                      <th title="Cổ tức tiền mặt trung bình năm (nhập tay)">Cổ tức TB (₫/năm)</th>
-                      <th title="Giá trị mua ròng của khối ngoại">Ngoại ròng (tỷ đồng)</th>
-                      <th title="Giá trị mua ròng của khối tự doanh CTCK">Tự doanh ròng (tỷ đồng)</th>
-                      <th>Khuyến nghị</th>
-                      <th>Chi tiết</th>
-                      <th>Cập nhật</th>
-                      <th>Xóa</th>
-                    </tr>
-                  </thead>
-                  <tbody id="stockTableBodyAttack"></tbody>
-                </table>
+              <div class="holdings-group-title" data-collapsible>Nhóm Tấn công</div>
+              <div class="holdings-group-content">
+                <div class="table-wrap">
+                  <table class="stock-table">
+                    <thead>
+                      <tr>
+                        <th>Ưu tiên</th>
+                        <th>Mã</th>
+                        <th>Phiên</th>
+                        <th title="Giá đóng cửa phiên gần nhất">Giá đóng cửa (nghìn)</th>
+                        <th title="Giá mua tham khảo nhập tay">Giá mua (nghìn)</th>
+                        <th title="Giá bán tham khảo nhập tay">Giá bán (nghìn)</th>
+                        <th title="(Giá bán - Giá đóng cửa) / Giá đóng cửa">Chênh lệch tới bán (%)</th>
+                        <th title="Cổ tức tiền mặt trung bình năm (nhập tay)">Cổ tức TB (₫/năm)</th>
+                        <th title="Giá trị mua ròng của khối ngoại">Ngoại ròng (tỷ đồng)</th>
+                        <th title="Giá trị mua ròng của khối tự doanh CTCK">Tự doanh ròng (tỷ đồng)</th>
+                        <th>Khuyến nghị</th>
+                        <th>Chi tiết</th>
+                        <th>Cập nhật</th>
+                        <th>Xóa</th>
+                      </tr>
+                    </thead>
+                    <tbody id="stockTableBodyAttack"></tbody>
+                  </table>
+                </div>
+                <div id="emptyStateAttack" class="card muted" style="display: none">Chưa có mã trong nhóm Tấn công.</div>
               </div>
-              <div id="emptyStateAttack" class="card muted" style="display: none">Chưa có mã trong nhóm Tấn công.</div>
             </div>
 
             <div class="holdings-group-card balance watch-table-card" data-group="balance">
-              <div class="holdings-group-title">Nhóm Cân bằng</div>
-              <div class="table-wrap">
-                <table class="stock-table">
-                  <thead>
-                    <tr>
-                      <th>Ưu tiên</th>
-                      <th>Mã</th>
-                      <th>Phiên</th>
-                      <th title="Giá đóng cửa phiên gần nhất">Giá đóng cửa (nghìn)</th>
-                      <th title="Giá mua tham khảo nhập tay">Giá mua (nghìn)</th>
-                      <th title="Giá bán tham khảo nhập tay">Giá bán (nghìn)</th>
-                      <th title="(Giá bán - Giá đóng cửa) / Giá đóng cửa">Chênh lệch tới bán (%)</th>
-                      <th title="Cổ tức tiền mặt trung bình năm (nhập tay)">Cổ tức TB (₫/năm)</th>
-                      <th title="Giá trị mua ròng của khối ngoại">Ngoại ròng (tỷ đồng)</th>
-                      <th title="Giá trị mua ròng của khối tự doanh CTCK">Tự doanh ròng (tỷ đồng)</th>
-                      <th>Khuyến nghị</th>
-                      <th>Chi tiết</th>
-                      <th>Cập nhật</th>
-                      <th>Xóa</th>
-                    </tr>
-                  </thead>
-                  <tbody id="stockTableBodyBalance"></tbody>
-                </table>
+              <div class="holdings-group-title" data-collapsible>Nhóm Cân bằng</div>
+              <div class="holdings-group-content">
+                <div class="table-wrap">
+                  <table class="stock-table">
+                    <thead>
+                      <tr>
+                        <th>Ưu tiên</th>
+                        <th>Mã</th>
+                        <th>Phiên</th>
+                        <th title="Giá đóng cửa phiên gần nhất">Giá đóng cửa (nghìn)</th>
+                        <th title="Giá mua tham khảo nhập tay">Giá mua (nghìn)</th>
+                        <th title="Giá bán tham khảo nhập tay">Giá bán (nghìn)</th>
+                        <th title="(Giá bán - Giá đóng cửa) / Giá đóng cửa">Chênh lệch tới bán (%)</th>
+                        <th title="Cổ tức tiền mặt trung bình năm (nhập tay)">Cổ tức TB (₫/năm)</th>
+                        <th title="Giá trị mua ròng của khối ngoại">Ngoại ròng (tỷ đồng)</th>
+                        <th title="Giá trị mua ròng của khối tự doanh CTCK">Tự doanh ròng (tỷ đồng)</th>
+                        <th>Khuyến nghị</th>
+                        <th>Chi tiết</th>
+                        <th>Cập nhật</th>
+                        <th>Xóa</th>
+                      </tr>
+                    </thead>
+                    <tbody id="stockTableBodyBalance"></tbody>
+                  </table>
+                </div>
+                <div id="emptyStateBalance" class="card muted" style="display: none">Chưa có mã trong nhóm Cân bằng.</div>
               </div>
-              <div id="emptyStateBalance" class="card muted" style="display: none">Chưa có mã trong nhóm Cân bằng.</div>
             </div>
 
             <div class="holdings-group-card defense watch-table-card" data-group="defense">
-              <div class="holdings-group-title">Nhóm Phòng thủ</div>
-              <div class="table-wrap">
-                <table class="stock-table">
-                  <thead>
-                    <tr>
-                      <th>Ưu tiên</th>
-                      <th>Mã</th>
-                      <th>Phiên</th>
-                      <th title="Giá đóng cửa phiên gần nhất">Giá đóng cửa (nghìn)</th>
-                      <th title="Giá mua tham khảo nhập tay">Giá mua (nghìn)</th>
-                      <th title="Giá bán tham khảo nhập tay">Giá bán (nghìn)</th>
-                      <th title="(Giá bán - Giá đóng cửa) / Giá đóng cửa">Chênh lệch tới bán (%)</th>
-                      <th title="Cổ tức tiền mặt trung bình năm (nhập tay)">Cổ tức TB (₫/năm)</th>
-                      <th title="Giá trị mua ròng của khối ngoại">Ngoại ròng (tỷ đồng)</th>
-                      <th title="Giá trị mua ròng của khối tự doanh CTCK">Tự doanh ròng (tỷ đồng)</th>
-                      <th>Khuyến nghị</th>
-                      <th>Chi tiết</th>
-                      <th>Cập nhật</th>
-                      <th>Xóa</th>
-                    </tr>
-                  </thead>
-                  <tbody id="stockTableBodyDefense"></tbody>
-                </table>
+              <div class="holdings-group-title" data-collapsible>Nhóm Phòng thủ</div>
+              <div class="holdings-group-content">
+                <div class="table-wrap">
+                  <table class="stock-table">
+                    <thead>
+                      <tr>
+                        <th>Ưu tiên</th>
+                        <th>Mã</th>
+                        <th>Phiên</th>
+                        <th title="Giá đóng cửa phiên gần nhất">Giá đóng cửa (nghìn)</th>
+                        <th title="Giá mua tham khảo nhập tay">Giá mua (nghìn)</th>
+                        <th title="Giá bán tham khảo nhập tay">Giá bán (nghìn)</th>
+                        <th title="(Giá bán - Giá đóng cửa) / Giá đóng cửa">Chênh lệch tới bán (%)</th>
+                        <th title="Cổ tức tiền mặt trung bình năm (nhập tay)">Cổ tức TB (₫/năm)</th>
+                        <th title="Giá trị mua ròng của khối ngoại">Ngoại ròng (tỷ đồng)</th>
+                        <th title="Giá trị mua ròng của khối tự doanh CTCK">Tự doanh ròng (tỷ đồng)</th>
+                        <th>Khuyến nghị</th>
+                        <th>Chi tiết</th>
+                        <th>Cập nhật</th>
+                        <th>Xóa</th>
+                      </tr>
+                    </thead>
+                    <tbody id="stockTableBodyDefense"></tbody>
+                  </table>
+                </div>
+                <div id="emptyStateDefense" class="card muted" style="display: none">Chưa có mã trong nhóm Phòng thủ.</div>
               </div>
-              <div id="emptyStateDefense" class="card muted" style="display: none">Chưa có mã trong nhóm Phòng thủ.</div>
             </div>
           </div>
         </section>
-
-      <section class="panel">
-        <h2>Tóm tắt mốc nhập tay</h2>
-        <div id="adviceSummary" class="card muted">Đang tải...</div>
-      </section>
     </main>
 
+    <script src="/static/toast.js"></script>
     <script src="/static/manual_reco_data.js"></script>
     <script src="/static/ui_cache.js"></script>
     <script src="/static/stocks_list.js"></script>

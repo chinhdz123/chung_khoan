@@ -245,7 +245,6 @@ async function triggerJob(endpoint) {
 
 document.getElementById("watchlistForm").addEventListener("submit", saveConfig);
 document.getElementById("runEtlBtn").addEventListener("click", () => triggerJob("/api/jobs/run-etl"));
-document.getElementById("runAdviceBtn").addEventListener("click", () => triggerJob("/api/jobs/run-advice"));
 addWatchlistBtn.addEventListener("click", () => addWatchlistRow());
 if (addSelectedBtn && quickSymbolSelect) {
   addSelectedBtn.addEventListener("click", () => {
