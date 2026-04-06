@@ -53,6 +53,31 @@ Tuy chon:
 - Doi ten conda env: `run.bat -EnvName ten-env`
 - Doi port: `run.bat -Port 9000`
 
+## Chay ngam & Khoi dong cung he thong (Background Service)
+
+He thong ho tro chay ngam (khong hien cua so terminal) va tu dong khoi dong khi co internet tren ca Windows va Linux.
+
+### Tren Windows
+1. **Chay ngam ngay lap tuc**: Click dup vao file `start_bg.bat` de chay background an hoan toan.
+2. **Cai dat auto-start (Scheduled Task)**:
+   - Mo **PowerShell voi quyen Administrator**
+   - Chay file bang lenh: `.\install_service.ps1`
+   - Server se tu dong chay ngam ngay khi ban mo may tinh va ket noi internet.
+
+### Tren Linux (Ubuntu / Raspberry Pi / VPS)
+1. **Chay ngam ngay lap tuc**:
+   ```bash
+   chmod +x run.sh
+   nohup ./run.sh > server.log 2>&1 &
+   ```
+2. **Cai dat auto-start (Systemd)**:
+   ```bash
+   chmod +x run.sh install_service.sh
+   sudo ./install_service.sh
+   ```
+   - Script se dang ky `chungkhoan.service` vao systemd va tu dong cho mang len truoc khi chay (`network-online.target`).
+   - Xem log background bat cu luc nao: `sudo journalctl -u chungkhoan.service -f`
+
 ## Lich job
 
 - ETL: 15:30 moi ngay (`ETL_HOUR`, `ETL_MINUTE`)
