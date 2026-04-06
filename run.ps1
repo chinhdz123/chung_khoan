@@ -57,7 +57,7 @@ function Start-WithConda($backendDir, $envName, $port, $noRun) {
     Write-Step "Khoi dong server tai http://localhost:$port"
     Push-Location $backendDir
     try {
-        conda run -n $envName --no-capture-output python -m uvicorn app.main:app --reload --port $port
+        conda run -n $envName --no-capture-output python -m uvicorn app.main:app --reload --host 0.0.0.0 --port $port
     }
     finally {
         Pop-Location
@@ -90,7 +90,7 @@ function Start-WithVenvFallback($backendDir, $port, $noRun) {
     Write-Step "Khoi dong server tai http://localhost:$port"
     Push-Location $backendDir
     try {
-        & $pythonExe -m uvicorn app.main:app --reload --port $port
+        & $pythonExe -m uvicorn app.main:app --reload --host 0.0.0.0 --port $port
     }
     finally {
         Pop-Location
