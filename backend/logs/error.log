@@ -1,0 +1,1285 @@
+2026-04-04 17:53:11,522 | ERROR | app.services.data_provider | 611ccd0a-05b9-42eb-b818-e5e79b63e05f | vnstock_data not available; fake fallback is disabled
+2026-04-04 17:53:11,524 | ERROR | app.services.etl | 611ccd0a-05b9-42eb-b818-e5e79b63e05f | market ETL failed for FPT
+Traceback (most recent call last):
+  File "C:\work\code\other\chung_khoan\backend\app\services\etl.py", line 32, in run
+    market_data = self.provider.fetch_market(symbol, run_date)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\work\code\other\chung_khoan\backend\app\services\data_provider.py", line 67, in fetch_market
+    raise RuntimeError("vnstock_data unavailable; cannot fetch market data")
+RuntimeError: vnstock_data unavailable; cannot fetch market data
+2026-04-04 17:53:11,529 | ERROR | app.services.etl | 611ccd0a-05b9-42eb-b818-e5e79b63e05f | financial ETL failed for FPT
+Traceback (most recent call last):
+  File "C:\work\code\other\chung_khoan\backend\app\services\etl.py", line 40, in run
+    fin_data = self.provider.fetch_financial(symbol, run_date)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\work\code\other\chung_khoan\backend\app\services\data_provider.py", line 76, in fetch_financial
+    raise RuntimeError("vnstock_data unavailable; cannot fetch financial data")
+RuntimeError: vnstock_data unavailable; cannot fetch financial data
+2026-04-04 17:53:11,529 | ERROR | app.services.etl | 611ccd0a-05b9-42eb-b818-e5e79b63e05f | news ETL failed for FPT
+Traceback (most recent call last):
+  File "C:\work\code\other\chung_khoan\backend\app\services\etl.py", line 48, in run
+    news_items = self.provider.fetch_news(symbol)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\work\code\other\chung_khoan\backend\app\services\data_provider.py", line 85, in fetch_news
+    raise RuntimeError("vnstock_data unavailable; cannot fetch news data")
+RuntimeError: vnstock_data unavailable; cannot fetch news data
+2026-04-04 17:53:11,530 | ERROR | app.services.etl | 611ccd0a-05b9-42eb-b818-e5e79b63e05f | market ETL failed for HPG
+Traceback (most recent call last):
+  File "C:\work\code\other\chung_khoan\backend\app\services\etl.py", line 32, in run
+    market_data = self.provider.fetch_market(symbol, run_date)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\work\code\other\chung_khoan\backend\app\services\data_provider.py", line 67, in fetch_market
+    raise RuntimeError("vnstock_data unavailable; cannot fetch market data")
+RuntimeError: vnstock_data unavailable; cannot fetch market data
+2026-04-04 17:53:11,530 | ERROR | app.services.etl | 611ccd0a-05b9-42eb-b818-e5e79b63e05f | financial ETL failed for HPG
+Traceback (most recent call last):
+  File "C:\work\code\other\chung_khoan\backend\app\services\etl.py", line 40, in run
+    fin_data = self.provider.fetch_financial(symbol, run_date)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\work\code\other\chung_khoan\backend\app\services\data_provider.py", line 76, in fetch_financial
+    raise RuntimeError("vnstock_data unavailable; cannot fetch financial data")
+RuntimeError: vnstock_data unavailable; cannot fetch financial data
+2026-04-04 17:53:11,530 | ERROR | app.services.etl | 611ccd0a-05b9-42eb-b818-e5e79b63e05f | news ETL failed for HPG
+Traceback (most recent call last):
+  File "C:\work\code\other\chung_khoan\backend\app\services\etl.py", line 48, in run
+    news_items = self.provider.fetch_news(symbol)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\work\code\other\chung_khoan\backend\app\services\data_provider.py", line 85, in fetch_news
+    raise RuntimeError("vnstock_data unavailable; cannot fetch news data")
+RuntimeError: vnstock_data unavailable; cannot fetch news data
+2026-04-04 17:53:11,530 | ERROR | app.services.etl | 611ccd0a-05b9-42eb-b818-e5e79b63e05f | market ETL failed for TCB
+Traceback (most recent call last):
+  File "C:\work\code\other\chung_khoan\backend\app\services\etl.py", line 32, in run
+    market_data = self.provider.fetch_market(symbol, run_date)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\work\code\other\chung_khoan\backend\app\services\data_provider.py", line 67, in fetch_market
+    raise RuntimeError("vnstock_data unavailable; cannot fetch market data")
+RuntimeError: vnstock_data unavailable; cannot fetch market data
+2026-04-04 17:53:11,531 | ERROR | app.services.etl | 611ccd0a-05b9-42eb-b818-e5e79b63e05f | financial ETL failed for TCB
+Traceback (most recent call last):
+  File "C:\work\code\other\chung_khoan\backend\app\services\etl.py", line 40, in run
+    fin_data = self.provider.fetch_financial(symbol, run_date)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\work\code\other\chung_khoan\backend\app\services\data_provider.py", line 76, in fetch_financial
+    raise RuntimeError("vnstock_data unavailable; cannot fetch financial data")
+RuntimeError: vnstock_data unavailable; cannot fetch financial data
+2026-04-04 17:53:11,531 | ERROR | app.services.etl | 611ccd0a-05b9-42eb-b818-e5e79b63e05f | news ETL failed for TCB
+Traceback (most recent call last):
+  File "C:\work\code\other\chung_khoan\backend\app\services\etl.py", line 48, in run
+    news_items = self.provider.fetch_news(symbol)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\work\code\other\chung_khoan\backend\app\services\data_provider.py", line 85, in fetch_news
+    raise RuntimeError("vnstock_data unavailable; cannot fetch news data")
+RuntimeError: vnstock_data unavailable; cannot fetch news data
+2026-04-04 17:53:11,531 | ERROR | app.services.etl | 611ccd0a-05b9-42eb-b818-e5e79b63e05f | market ETL failed for VCB
+Traceback (most recent call last):
+  File "C:\work\code\other\chung_khoan\backend\app\services\etl.py", line 32, in run
+    market_data = self.provider.fetch_market(symbol, run_date)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\work\code\other\chung_khoan\backend\app\services\data_provider.py", line 67, in fetch_market
+    raise RuntimeError("vnstock_data unavailable; cannot fetch market data")
+RuntimeError: vnstock_data unavailable; cannot fetch market data
+2026-04-04 17:53:11,531 | ERROR | app.services.etl | 611ccd0a-05b9-42eb-b818-e5e79b63e05f | financial ETL failed for VCB
+Traceback (most recent call last):
+  File "C:\work\code\other\chung_khoan\backend\app\services\etl.py", line 40, in run
+    fin_data = self.provider.fetch_financial(symbol, run_date)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\work\code\other\chung_khoan\backend\app\services\data_provider.py", line 76, in fetch_financial
+    raise RuntimeError("vnstock_data unavailable; cannot fetch financial data")
+RuntimeError: vnstock_data unavailable; cannot fetch financial data
+2026-04-04 17:53:11,531 | ERROR | app.services.etl | 611ccd0a-05b9-42eb-b818-e5e79b63e05f | news ETL failed for VCB
+Traceback (most recent call last):
+  File "C:\work\code\other\chung_khoan\backend\app\services\etl.py", line 48, in run
+    news_items = self.provider.fetch_news(symbol)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\work\code\other\chung_khoan\backend\app\services\data_provider.py", line 85, in fetch_news
+    raise RuntimeError("vnstock_data unavailable; cannot fetch news data")
+RuntimeError: vnstock_data unavailable; cannot fetch news data
+2026-04-04 17:53:11,532 | ERROR | app.services.etl | 611ccd0a-05b9-42eb-b818-e5e79b63e05f | market ETL failed for VNM
+Traceback (most recent call last):
+  File "C:\work\code\other\chung_khoan\backend\app\services\etl.py", line 32, in run
+    market_data = self.provider.fetch_market(symbol, run_date)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\work\code\other\chung_khoan\backend\app\services\data_provider.py", line 67, in fetch_market
+    raise RuntimeError("vnstock_data unavailable; cannot fetch market data")
+RuntimeError: vnstock_data unavailable; cannot fetch market data
+2026-04-04 17:53:11,532 | ERROR | app.services.etl | 611ccd0a-05b9-42eb-b818-e5e79b63e05f | financial ETL failed for VNM
+Traceback (most recent call last):
+  File "C:\work\code\other\chung_khoan\backend\app\services\etl.py", line 40, in run
+    fin_data = self.provider.fetch_financial(symbol, run_date)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\work\code\other\chung_khoan\backend\app\services\data_provider.py", line 76, in fetch_financial
+    raise RuntimeError("vnstock_data unavailable; cannot fetch financial data")
+RuntimeError: vnstock_data unavailable; cannot fetch financial data
+2026-04-04 17:53:11,532 | ERROR | app.services.etl | 611ccd0a-05b9-42eb-b818-e5e79b63e05f | news ETL failed for VNM
+Traceback (most recent call last):
+  File "C:\work\code\other\chung_khoan\backend\app\services\etl.py", line 48, in run
+    news_items = self.provider.fetch_news(symbol)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\work\code\other\chung_khoan\backend\app\services\data_provider.py", line 85, in fetch_news
+    raise RuntimeError("vnstock_data unavailable; cannot fetch news data")
+RuntimeError: vnstock_data unavailable; cannot fetch news data
+2026-04-04 17:59:40,458 | ERROR | app.services.data_provider | da0b9975-8da7-4426-8ff0-b330bfc04a10 | fetch_news via vnstock failed for TCB: 'charmap' codec can't encode characters in position 2-3: character maps to <undefined>
+Traceback (most recent call last):
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnai\beam\quota.py", line 326, in wrapper
+    guardian.verify(func.__name__, resource_type)
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnai\beam\quota.py", line 152, in verify
+    raise RateLimitExceeded(
+vnai.beam.quota.RateLimitExceeded: 
+============================================================
+⚠️  GIỚI HẠN API ĐÃ ĐẠT TỐI ĐA (Rate Limit Exceeded)
+============================================================
+
+📌 Bạn đã đạt giới hạn tối đa số lượt yêu cầu API trong 1 phút (minute).
+   (You have reached the maximum API request limit for this period)
+
+📊 Chi tiết (Details):
+   • Gói hiện tại: Khách (Guest)
+   • Giới hạn: 20 requests/phút
+   • Đã sử dụng: 20/20
+   • Chờ 20 giây để tiếp tục (Wait to retry)
+
+💡 Giải pháp (Solutions):
+   1️⃣ Chờ 20 giây rồi thử lại
+      (Wait and retry)
+   2️⃣ Tham gia gói thành viên tài trợ để sử dụng không bị gián đoạn
+      (Join sponsor membership for uninterrupted access)
+
+🚀 Nâng cấp (Upgrade):
+   • Phiên bản cộng đồng (60 request/phút - Community):
+     Đăng ký API key miễn phí: https://vnstocks.com/login
+   • Gói thành viên tài trợ (180-600 request/phút - Sponsor):
+     Tham gia: https://vnstocks.com/insiders-program
+     Sau khi tham gia tài trợ, cài bộ thư viện riêng vnstock_data theo hướng dẫn https://vnstocks.com/onboard-member
+
+============================================================
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\work\code\other\chung_khoan\backend\app\services\data_provider.py", line 89, in fetch_news
+    return self._fetch_news_vnstock(symbol, limit)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\work\code\other\chung_khoan\backend\app\services\data_provider.py", line 193, in _fetch_news_vnstock
+    news_df = stock.company.news()
+              ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnstock\common\data.py", line 388, in news
+    return self.data_source.news(**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnai\__init__.py", line 145, in wrapper
+    return _optimized_func[0](*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnai\beam\quota.py", line 325, in wrapper
+    with CleanErrorContext():
+         ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnai\beam\quota.py", line 248, in __exit__
+    print(f"\n⚠️ {str(exc_val)}\n")
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode characters in position 2-3: character maps to <undefined>
+2026-04-04 17:59:40,466 | ERROR | app.services.etl | da0b9975-8da7-4426-8ff0-b330bfc04a10 | news ETL failed for TCB
+Traceback (most recent call last):
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnai\beam\quota.py", line 326, in wrapper
+    guardian.verify(func.__name__, resource_type)
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnai\beam\quota.py", line 152, in verify
+    raise RateLimitExceeded(
+vnai.beam.quota.RateLimitExceeded: 
+============================================================
+⚠️  GIỚI HẠN API ĐÃ ĐẠT TỐI ĐA (Rate Limit Exceeded)
+============================================================
+
+📌 Bạn đã đạt giới hạn tối đa số lượt yêu cầu API trong 1 phút (minute).
+   (You have reached the maximum API request limit for this period)
+
+📊 Chi tiết (Details):
+   • Gói hiện tại: Khách (Guest)
+   • Giới hạn: 20 requests/phút
+   • Đã sử dụng: 20/20
+   • Chờ 20 giây để tiếp tục (Wait to retry)
+
+💡 Giải pháp (Solutions):
+   1️⃣ Chờ 20 giây rồi thử lại
+      (Wait and retry)
+   2️⃣ Tham gia gói thành viên tài trợ để sử dụng không bị gián đoạn
+      (Join sponsor membership for uninterrupted access)
+
+🚀 Nâng cấp (Upgrade):
+   • Phiên bản cộng đồng (60 request/phút - Community):
+     Đăng ký API key miễn phí: https://vnstocks.com/login
+   • Gói thành viên tài trợ (180-600 request/phút - Sponsor):
+     Tham gia: https://vnstocks.com/insiders-program
+     Sau khi tham gia tài trợ, cài bộ thư viện riêng vnstock_data theo hướng dẫn https://vnstocks.com/onboard-member
+
+============================================================
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\work\code\other\chung_khoan\backend\app\services\etl.py", line 48, in run
+    news_items = self.provider.fetch_news(symbol)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\work\code\other\chung_khoan\backend\app\services\data_provider.py", line 89, in fetch_news
+    return self._fetch_news_vnstock(symbol, limit)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\work\code\other\chung_khoan\backend\app\services\data_provider.py", line 193, in _fetch_news_vnstock
+    news_df = stock.company.news()
+              ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnstock\common\data.py", line 388, in news
+    return self.data_source.news(**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnai\__init__.py", line 145, in wrapper
+    return _optimized_func[0](*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnai\beam\quota.py", line 325, in wrapper
+    with CleanErrorContext():
+         ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnai\beam\quota.py", line 248, in __exit__
+    print(f"\n⚠️ {str(exc_val)}\n")
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode characters in position 2-3: character maps to <undefined>
+2026-04-04 17:59:45,054 | ERROR | app.services.data_provider | da0b9975-8da7-4426-8ff0-b330bfc04a10 | fetch_market via vnstock failed for VCB: RetryError[<Future at 0x20764833740 state=finished raised UnicodeEncodeError>]
+Traceback (most recent call last):
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnai\beam\quota.py", line 326, in wrapper
+    guardian.verify(func.__name__, resource_type)
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnai\beam\quota.py", line 152, in verify
+    raise RateLimitExceeded(
+vnai.beam.quota.RateLimitExceeded: 
+============================================================
+⚠️  GIỚI HẠN API ĐÃ ĐẠT TỐI ĐA (Rate Limit Exceeded)
+============================================================
+
+📌 Bạn đã đạt giới hạn tối đa số lượt yêu cầu API trong 1 phút (minute).
+   (You have reached the maximum API request limit for this period)
+
+📊 Chi tiết (Details):
+   • Gói hiện tại: Khách (Guest)
+   • Giới hạn: 20 requests/phút
+   • Đã sử dụng: 20/20
+   • Chờ 15 giây để tiếp tục (Wait to retry)
+
+💡 Giải pháp (Solutions):
+   1️⃣ Chờ 15 giây rồi thử lại
+      (Wait and retry)
+   2️⃣ Tham gia gói thành viên tài trợ để sử dụng không bị gián đoạn
+      (Join sponsor membership for uninterrupted access)
+
+🚀 Nâng cấp (Upgrade):
+   • Phiên bản cộng đồng (60 request/phút - Community):
+     Đăng ký API key miễn phí: https://vnstocks.com/login
+   • Gói thành viên tài trợ (180-600 request/phút - Sponsor):
+     Tham gia: https://vnstocks.com/insiders-program
+     Sau khi tham gia tài trợ, cài bộ thư viện riêng vnstock_data theo hướng dẫn https://vnstocks.com/onboard-member
+
+============================================================
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\tenacity\__init__.py", line 473, in __call__
+    result = fn(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnstock\common\data.py", line 220, in history
+    return self.data_source.history(**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnai\__init__.py", line 145, in wrapper
+    return _optimized_func[0](*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnai\beam\quota.py", line 325, in wrapper
+    with CleanErrorContext():
+         ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnai\beam\quota.py", line 248, in __exit__
+    print(f"\n⚠️ {str(exc_val)}\n")
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode characters in position 2-3: character maps to <undefined>
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\work\code\other\chung_khoan\backend\app\services\data_provider.py", line 71, in fetch_market
+    return self._fetch_market_vnstock(symbol, snapshot_date)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\work\code\other\chung_khoan\backend\app\services\data_provider.py", line 100, in _fetch_market_vnstock
+    quote_df = stock.quote.history(start=start_date, end=end_date, interval="1D")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\tenacity\__init__.py", line 331, in wrapped_f
+    return copy(f, *args, **kw)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\tenacity\__init__.py", line 470, in __call__
+    do = self.iter(retry_state=retry_state)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\tenacity\__init__.py", line 371, in iter
+    result = action(retry_state)
+             ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\tenacity\__init__.py", line 414, in exc_check
+    raise retry_exc from fut.exception()
+tenacity.RetryError: RetryError[<Future at 0x20764833740 state=finished raised UnicodeEncodeError>]
+2026-04-04 17:59:45,059 | ERROR | app.services.etl | da0b9975-8da7-4426-8ff0-b330bfc04a10 | market ETL failed for VCB
+Traceback (most recent call last):
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnai\beam\quota.py", line 326, in wrapper
+    guardian.verify(func.__name__, resource_type)
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnai\beam\quota.py", line 152, in verify
+    raise RateLimitExceeded(
+vnai.beam.quota.RateLimitExceeded: 
+============================================================
+⚠️  GIỚI HẠN API ĐÃ ĐẠT TỐI ĐA (Rate Limit Exceeded)
+============================================================
+
+📌 Bạn đã đạt giới hạn tối đa số lượt yêu cầu API trong 1 phút (minute).
+   (You have reached the maximum API request limit for this period)
+
+📊 Chi tiết (Details):
+   • Gói hiện tại: Khách (Guest)
+   • Giới hạn: 20 requests/phút
+   • Đã sử dụng: 20/20
+   • Chờ 15 giây để tiếp tục (Wait to retry)
+
+💡 Giải pháp (Solutions):
+   1️⃣ Chờ 15 giây rồi thử lại
+      (Wait and retry)
+   2️⃣ Tham gia gói thành viên tài trợ để sử dụng không bị gián đoạn
+      (Join sponsor membership for uninterrupted access)
+
+🚀 Nâng cấp (Upgrade):
+   • Phiên bản cộng đồng (60 request/phút - Community):
+     Đăng ký API key miễn phí: https://vnstocks.com/login
+   • Gói thành viên tài trợ (180-600 request/phút - Sponsor):
+     Tham gia: https://vnstocks.com/insiders-program
+     Sau khi tham gia tài trợ, cài bộ thư viện riêng vnstock_data theo hướng dẫn https://vnstocks.com/onboard-member
+
+============================================================
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\tenacity\__init__.py", line 473, in __call__
+    result = fn(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnstock\common\data.py", line 220, in history
+    return self.data_source.history(**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnai\__init__.py", line 145, in wrapper
+    return _optimized_func[0](*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnai\beam\quota.py", line 325, in wrapper
+    with CleanErrorContext():
+         ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnai\beam\quota.py", line 248, in __exit__
+    print(f"\n⚠️ {str(exc_val)}\n")
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode characters in position 2-3: character maps to <undefined>
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\work\code\other\chung_khoan\backend\app\services\etl.py", line 32, in run
+    market_data = self.provider.fetch_market(symbol, run_date)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\work\code\other\chung_khoan\backend\app\services\data_provider.py", line 71, in fetch_market
+    return self._fetch_market_vnstock(symbol, snapshot_date)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\work\code\other\chung_khoan\backend\app\services\data_provider.py", line 100, in _fetch_market_vnstock
+    quote_df = stock.quote.history(start=start_date, end=end_date, interval="1D")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\tenacity\__init__.py", line 331, in wrapped_f
+    return copy(f, *args, **kw)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\tenacity\__init__.py", line 470, in __call__
+    do = self.iter(retry_state=retry_state)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\tenacity\__init__.py", line 371, in iter
+    result = action(retry_state)
+             ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\tenacity\__init__.py", line 414, in exc_check
+    raise retry_exc from fut.exception()
+tenacity.RetryError: RetryError[<Future at 0x20764833740 state=finished raised UnicodeEncodeError>]
+2026-04-04 17:59:45,575 | ERROR | vnstock.common.data | da0b9975-8da7-4426-8ff0-b330bfc04a10 | Error fetching ratio: 'charmap' codec can't encode characters in position 2-3: character maps to <undefined>
+2026-04-04 17:59:45,576 | ERROR | app.services.data_provider | da0b9975-8da7-4426-8ff0-b330bfc04a10 | fetch_financial via vnstock failed for VCB: 'charmap' codec can't encode characters in position 2-3: character maps to <undefined>
+Traceback (most recent call last):
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnai\beam\quota.py", line 326, in wrapper
+    guardian.verify(func.__name__, resource_type)
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnai\beam\quota.py", line 152, in verify
+    raise RateLimitExceeded(
+vnai.beam.quota.RateLimitExceeded: 
+============================================================
+⚠️  GIỚI HẠN API ĐÃ ĐẠT TỐI ĐA (Rate Limit Exceeded)
+============================================================
+
+📌 Bạn đã đạt giới hạn tối đa số lượt yêu cầu API trong 1 phút (minute).
+   (You have reached the maximum API request limit for this period)
+
+📊 Chi tiết (Details):
+   • Gói hiện tại: Khách (Guest)
+   • Giới hạn: 20 requests/phút
+   • Đã sử dụng: 20/20
+   • Chờ 14 giây để tiếp tục (Wait to retry)
+
+💡 Giải pháp (Solutions):
+   1️⃣ Chờ 14 giây rồi thử lại
+      (Wait and retry)
+   2️⃣ Tham gia gói thành viên tài trợ để sử dụng không bị gián đoạn
+      (Join sponsor membership for uninterrupted access)
+
+🚀 Nâng cấp (Upgrade):
+   • Phiên bản cộng đồng (60 request/phút - Community):
+     Đăng ký API key miễn phí: https://vnstocks.com/login
+   • Gói thành viên tài trợ (180-600 request/phút - Sponsor):
+     Tham gia: https://vnstocks.com/insiders-program
+     Sau khi tham gia tài trợ, cài bộ thư viện riêng vnstock_data theo hướng dẫn https://vnstocks.com/onboard-member
+
+============================================================
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\work\code\other\chung_khoan\backend\app\services\data_provider.py", line 80, in fetch_financial
+    return self._fetch_financial_vnstock(symbol, snapshot_date)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\work\code\other\chung_khoan\backend\app\services\data_provider.py", line 132, in _fetch_financial_vnstock
+    ratio_df = stock.finance.ratio(period="year")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnstock\common\data.py", line 510, in ratio
+    return self._get_financial_data('ratio', symbol, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnstock\common\data.py", line 479, in _get_financial_data
+    return method(**processed_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnai\__init__.py", line 145, in wrapper
+    return _optimized_func[0](*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnai\beam\quota.py", line 325, in wrapper
+    with CleanErrorContext():
+         ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnai\beam\quota.py", line 248, in __exit__
+    print(f"\n⚠️ {str(exc_val)}\n")
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode characters in position 2-3: character maps to <undefined>
+2026-04-04 17:59:45,579 | ERROR | app.services.etl | da0b9975-8da7-4426-8ff0-b330bfc04a10 | financial ETL failed for VCB
+Traceback (most recent call last):
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnai\beam\quota.py", line 326, in wrapper
+    guardian.verify(func.__name__, resource_type)
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnai\beam\quota.py", line 152, in verify
+    raise RateLimitExceeded(
+vnai.beam.quota.RateLimitExceeded: 
+============================================================
+⚠️  GIỚI HẠN API ĐÃ ĐẠT TỐI ĐA (Rate Limit Exceeded)
+============================================================
+
+📌 Bạn đã đạt giới hạn tối đa số lượt yêu cầu API trong 1 phút (minute).
+   (You have reached the maximum API request limit for this period)
+
+📊 Chi tiết (Details):
+   • Gói hiện tại: Khách (Guest)
+   • Giới hạn: 20 requests/phút
+   • Đã sử dụng: 20/20
+   • Chờ 14 giây để tiếp tục (Wait to retry)
+
+💡 Giải pháp (Solutions):
+   1️⃣ Chờ 14 giây rồi thử lại
+      (Wait and retry)
+   2️⃣ Tham gia gói thành viên tài trợ để sử dụng không bị gián đoạn
+      (Join sponsor membership for uninterrupted access)
+
+🚀 Nâng cấp (Upgrade):
+   • Phiên bản cộng đồng (60 request/phút - Community):
+     Đăng ký API key miễn phí: https://vnstocks.com/login
+   • Gói thành viên tài trợ (180-600 request/phút - Sponsor):
+     Tham gia: https://vnstocks.com/insiders-program
+     Sau khi tham gia tài trợ, cài bộ thư viện riêng vnstock_data theo hướng dẫn https://vnstocks.com/onboard-member
+
+============================================================
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\work\code\other\chung_khoan\backend\app\services\etl.py", line 40, in run
+    fin_data = self.provider.fetch_financial(symbol, run_date)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\work\code\other\chung_khoan\backend\app\services\data_provider.py", line 80, in fetch_financial
+    return self._fetch_financial_vnstock(symbol, snapshot_date)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\work\code\other\chung_khoan\backend\app\services\data_provider.py", line 132, in _fetch_financial_vnstock
+    ratio_df = stock.finance.ratio(period="year")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnstock\common\data.py", line 510, in ratio
+    return self._get_financial_data('ratio', symbol, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnstock\common\data.py", line 479, in _get_financial_data
+    return method(**processed_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnai\__init__.py", line 145, in wrapper
+    return _optimized_func[0](*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnai\beam\quota.py", line 325, in wrapper
+    with CleanErrorContext():
+         ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnai\beam\quota.py", line 248, in __exit__
+    print(f"\n⚠️ {str(exc_val)}\n")
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode characters in position 2-3: character maps to <undefined>
+2026-04-04 17:59:46,040 | ERROR | app.services.data_provider | da0b9975-8da7-4426-8ff0-b330bfc04a10 | fetch_news via vnstock failed for VCB: 'charmap' codec can't encode characters in position 2-3: character maps to <undefined>
+Traceback (most recent call last):
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnai\beam\quota.py", line 326, in wrapper
+    guardian.verify(func.__name__, resource_type)
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnai\beam\quota.py", line 152, in verify
+    raise RateLimitExceeded(
+vnai.beam.quota.RateLimitExceeded: 
+============================================================
+⚠️  GIỚI HẠN API ĐÃ ĐẠT TỐI ĐA (Rate Limit Exceeded)
+============================================================
+
+📌 Bạn đã đạt giới hạn tối đa số lượt yêu cầu API trong 1 phút (minute).
+   (You have reached the maximum API request limit for this period)
+
+📊 Chi tiết (Details):
+   • Gói hiện tại: Khách (Guest)
+   • Giới hạn: 20 requests/phút
+   • Đã sử dụng: 20/20
+   • Chờ 14 giây để tiếp tục (Wait to retry)
+
+💡 Giải pháp (Solutions):
+   1️⃣ Chờ 14 giây rồi thử lại
+      (Wait and retry)
+   2️⃣ Tham gia gói thành viên tài trợ để sử dụng không bị gián đoạn
+      (Join sponsor membership for uninterrupted access)
+
+🚀 Nâng cấp (Upgrade):
+   • Phiên bản cộng đồng (60 request/phút - Community):
+     Đăng ký API key miễn phí: https://vnstocks.com/login
+   • Gói thành viên tài trợ (180-600 request/phút - Sponsor):
+     Tham gia: https://vnstocks.com/insiders-program
+     Sau khi tham gia tài trợ, cài bộ thư viện riêng vnstock_data theo hướng dẫn https://vnstocks.com/onboard-member
+
+============================================================
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\work\code\other\chung_khoan\backend\app\services\data_provider.py", line 89, in fetch_news
+    return self._fetch_news_vnstock(symbol, limit)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\work\code\other\chung_khoan\backend\app\services\data_provider.py", line 193, in _fetch_news_vnstock
+    news_df = stock.company.news()
+              ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnstock\common\data.py", line 388, in news
+    return self.data_source.news(**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnai\__init__.py", line 145, in wrapper
+    return _optimized_func[0](*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnai\beam\quota.py", line 325, in wrapper
+    with CleanErrorContext():
+         ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnai\beam\quota.py", line 248, in __exit__
+    print(f"\n⚠️ {str(exc_val)}\n")
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode characters in position 2-3: character maps to <undefined>
+2026-04-04 17:59:46,043 | ERROR | app.services.etl | da0b9975-8da7-4426-8ff0-b330bfc04a10 | news ETL failed for VCB
+Traceback (most recent call last):
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnai\beam\quota.py", line 326, in wrapper
+    guardian.verify(func.__name__, resource_type)
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnai\beam\quota.py", line 152, in verify
+    raise RateLimitExceeded(
+vnai.beam.quota.RateLimitExceeded: 
+============================================================
+⚠️  GIỚI HẠN API ĐÃ ĐẠT TỐI ĐA (Rate Limit Exceeded)
+============================================================
+
+📌 Bạn đã đạt giới hạn tối đa số lượt yêu cầu API trong 1 phút (minute).
+   (You have reached the maximum API request limit for this period)
+
+📊 Chi tiết (Details):
+   • Gói hiện tại: Khách (Guest)
+   • Giới hạn: 20 requests/phút
+   • Đã sử dụng: 20/20
+   • Chờ 14 giây để tiếp tục (Wait to retry)
+
+💡 Giải pháp (Solutions):
+   1️⃣ Chờ 14 giây rồi thử lại
+      (Wait and retry)
+   2️⃣ Tham gia gói thành viên tài trợ để sử dụng không bị gián đoạn
+      (Join sponsor membership for uninterrupted access)
+
+🚀 Nâng cấp (Upgrade):
+   • Phiên bản cộng đồng (60 request/phút - Community):
+     Đăng ký API key miễn phí: https://vnstocks.com/login
+   • Gói thành viên tài trợ (180-600 request/phút - Sponsor):
+     Tham gia: https://vnstocks.com/insiders-program
+     Sau khi tham gia tài trợ, cài bộ thư viện riêng vnstock_data theo hướng dẫn https://vnstocks.com/onboard-member
+
+============================================================
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\work\code\other\chung_khoan\backend\app\services\etl.py", line 48, in run
+    news_items = self.provider.fetch_news(symbol)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\work\code\other\chung_khoan\backend\app\services\data_provider.py", line 89, in fetch_news
+    return self._fetch_news_vnstock(symbol, limit)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\work\code\other\chung_khoan\backend\app\services\data_provider.py", line 193, in _fetch_news_vnstock
+    news_df = stock.company.news()
+              ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnstock\common\data.py", line 388, in news
+    return self.data_source.news(**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnai\__init__.py", line 145, in wrapper
+    return _optimized_func[0](*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnai\beam\quota.py", line 325, in wrapper
+    with CleanErrorContext():
+         ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnai\beam\quota.py", line 248, in __exit__
+    print(f"\n⚠️ {str(exc_val)}\n")
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode characters in position 2-3: character maps to <undefined>
+2026-04-04 17:59:50,708 | ERROR | app.services.data_provider | da0b9975-8da7-4426-8ff0-b330bfc04a10 | fetch_market via vnstock failed for VNM: RetryError[<Future at 0x20764661460 state=finished raised UnicodeEncodeError>]
+Traceback (most recent call last):
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnai\beam\quota.py", line 326, in wrapper
+    guardian.verify(func.__name__, resource_type)
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnai\beam\quota.py", line 152, in verify
+    raise RateLimitExceeded(
+vnai.beam.quota.RateLimitExceeded: 
+============================================================
+⚠️  GIỚI HẠN API ĐÃ ĐẠT TỐI ĐA (Rate Limit Exceeded)
+============================================================
+
+📌 Bạn đã đạt giới hạn tối đa số lượt yêu cầu API trong 1 phút (minute).
+   (You have reached the maximum API request limit for this period)
+
+📊 Chi tiết (Details):
+   • Gói hiện tại: Khách (Guest)
+   • Giới hạn: 20 requests/phút
+   • Đã sử dụng: 20/20
+   • Chờ 9 giây để tiếp tục (Wait to retry)
+
+💡 Giải pháp (Solutions):
+   1️⃣ Chờ 9 giây rồi thử lại
+      (Wait and retry)
+   2️⃣ Tham gia gói thành viên tài trợ để sử dụng không bị gián đoạn
+      (Join sponsor membership for uninterrupted access)
+
+🚀 Nâng cấp (Upgrade):
+   • Phiên bản cộng đồng (60 request/phút - Community):
+     Đăng ký API key miễn phí: https://vnstocks.com/login
+   • Gói thành viên tài trợ (180-600 request/phút - Sponsor):
+     Tham gia: https://vnstocks.com/insiders-program
+     Sau khi tham gia tài trợ, cài bộ thư viện riêng vnstock_data theo hướng dẫn https://vnstocks.com/onboard-member
+
+============================================================
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\tenacity\__init__.py", line 473, in __call__
+    result = fn(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnstock\common\data.py", line 220, in history
+    return self.data_source.history(**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnai\__init__.py", line 145, in wrapper
+    return _optimized_func[0](*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnai\beam\quota.py", line 325, in wrapper
+    with CleanErrorContext():
+         ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnai\beam\quota.py", line 248, in __exit__
+    print(f"\n⚠️ {str(exc_val)}\n")
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode characters in position 2-3: character maps to <undefined>
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\work\code\other\chung_khoan\backend\app\services\data_provider.py", line 71, in fetch_market
+    return self._fetch_market_vnstock(symbol, snapshot_date)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\work\code\other\chung_khoan\backend\app\services\data_provider.py", line 100, in _fetch_market_vnstock
+    quote_df = stock.quote.history(start=start_date, end=end_date, interval="1D")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\tenacity\__init__.py", line 331, in wrapped_f
+    return copy(f, *args, **kw)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\tenacity\__init__.py", line 470, in __call__
+    do = self.iter(retry_state=retry_state)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\tenacity\__init__.py", line 371, in iter
+    result = action(retry_state)
+             ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\tenacity\__init__.py", line 414, in exc_check
+    raise retry_exc from fut.exception()
+tenacity.RetryError: RetryError[<Future at 0x20764661460 state=finished raised UnicodeEncodeError>]
+2026-04-04 17:59:50,712 | ERROR | app.services.etl | da0b9975-8da7-4426-8ff0-b330bfc04a10 | market ETL failed for VNM
+Traceback (most recent call last):
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnai\beam\quota.py", line 326, in wrapper
+    guardian.verify(func.__name__, resource_type)
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnai\beam\quota.py", line 152, in verify
+    raise RateLimitExceeded(
+vnai.beam.quota.RateLimitExceeded: 
+============================================================
+⚠️  GIỚI HẠN API ĐÃ ĐẠT TỐI ĐA (Rate Limit Exceeded)
+============================================================
+
+📌 Bạn đã đạt giới hạn tối đa số lượt yêu cầu API trong 1 phút (minute).
+   (You have reached the maximum API request limit for this period)
+
+📊 Chi tiết (Details):
+   • Gói hiện tại: Khách (Guest)
+   • Giới hạn: 20 requests/phút
+   • Đã sử dụng: 20/20
+   • Chờ 9 giây để tiếp tục (Wait to retry)
+
+💡 Giải pháp (Solutions):
+   1️⃣ Chờ 9 giây rồi thử lại
+      (Wait and retry)
+   2️⃣ Tham gia gói thành viên tài trợ để sử dụng không bị gián đoạn
+      (Join sponsor membership for uninterrupted access)
+
+🚀 Nâng cấp (Upgrade):
+   • Phiên bản cộng đồng (60 request/phút - Community):
+     Đăng ký API key miễn phí: https://vnstocks.com/login
+   • Gói thành viên tài trợ (180-600 request/phút - Sponsor):
+     Tham gia: https://vnstocks.com/insiders-program
+     Sau khi tham gia tài trợ, cài bộ thư viện riêng vnstock_data theo hướng dẫn https://vnstocks.com/onboard-member
+
+============================================================
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\tenacity\__init__.py", line 473, in __call__
+    result = fn(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnstock\common\data.py", line 220, in history
+    return self.data_source.history(**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnai\__init__.py", line 145, in wrapper
+    return _optimized_func[0](*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnai\beam\quota.py", line 325, in wrapper
+    with CleanErrorContext():
+         ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnai\beam\quota.py", line 248, in __exit__
+    print(f"\n⚠️ {str(exc_val)}\n")
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode characters in position 2-3: character maps to <undefined>
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\work\code\other\chung_khoan\backend\app\services\etl.py", line 32, in run
+    market_data = self.provider.fetch_market(symbol, run_date)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\work\code\other\chung_khoan\backend\app\services\data_provider.py", line 71, in fetch_market
+    return self._fetch_market_vnstock(symbol, snapshot_date)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\work\code\other\chung_khoan\backend\app\services\data_provider.py", line 100, in _fetch_market_vnstock
+    quote_df = stock.quote.history(start=start_date, end=end_date, interval="1D")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\tenacity\__init__.py", line 331, in wrapped_f
+    return copy(f, *args, **kw)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\tenacity\__init__.py", line 470, in __call__
+    do = self.iter(retry_state=retry_state)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\tenacity\__init__.py", line 371, in iter
+    result = action(retry_state)
+             ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\tenacity\__init__.py", line 414, in exc_check
+    raise retry_exc from fut.exception()
+tenacity.RetryError: RetryError[<Future at 0x20764661460 state=finished raised UnicodeEncodeError>]
+2026-04-04 17:59:51,304 | ERROR | vnstock.common.data | da0b9975-8da7-4426-8ff0-b330bfc04a10 | Error fetching ratio: 'charmap' codec can't encode characters in position 2-3: character maps to <undefined>
+2026-04-04 17:59:51,304 | ERROR | app.services.data_provider | da0b9975-8da7-4426-8ff0-b330bfc04a10 | fetch_financial via vnstock failed for VNM: 'charmap' codec can't encode characters in position 2-3: character maps to <undefined>
+Traceback (most recent call last):
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnai\beam\quota.py", line 326, in wrapper
+    guardian.verify(func.__name__, resource_type)
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnai\beam\quota.py", line 152, in verify
+    raise RateLimitExceeded(
+vnai.beam.quota.RateLimitExceeded: 
+============================================================
+⚠️  GIỚI HẠN API ĐÃ ĐẠT TỐI ĐA (Rate Limit Exceeded)
+============================================================
+
+📌 Bạn đã đạt giới hạn tối đa số lượt yêu cầu API trong 1 phút (minute).
+   (You have reached the maximum API request limit for this period)
+
+📊 Chi tiết (Details):
+   • Gói hiện tại: Khách (Guest)
+   • Giới hạn: 20 requests/phút
+   • Đã sử dụng: 20/20
+   • Chờ 9 giây để tiếp tục (Wait to retry)
+
+💡 Giải pháp (Solutions):
+   1️⃣ Chờ 9 giây rồi thử lại
+      (Wait and retry)
+   2️⃣ Tham gia gói thành viên tài trợ để sử dụng không bị gián đoạn
+      (Join sponsor membership for uninterrupted access)
+
+🚀 Nâng cấp (Upgrade):
+   • Phiên bản cộng đồng (60 request/phút - Community):
+     Đăng ký API key miễn phí: https://vnstocks.com/login
+   • Gói thành viên tài trợ (180-600 request/phút - Sponsor):
+     Tham gia: https://vnstocks.com/insiders-program
+     Sau khi tham gia tài trợ, cài bộ thư viện riêng vnstock_data theo hướng dẫn https://vnstocks.com/onboard-member
+
+============================================================
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\work\code\other\chung_khoan\backend\app\services\data_provider.py", line 80, in fetch_financial
+    return self._fetch_financial_vnstock(symbol, snapshot_date)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\work\code\other\chung_khoan\backend\app\services\data_provider.py", line 132, in _fetch_financial_vnstock
+    ratio_df = stock.finance.ratio(period="year")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnstock\common\data.py", line 510, in ratio
+    return self._get_financial_data('ratio', symbol, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnstock\common\data.py", line 479, in _get_financial_data
+    return method(**processed_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnai\__init__.py", line 145, in wrapper
+    return _optimized_func[0](*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnai\beam\quota.py", line 325, in wrapper
+    with CleanErrorContext():
+         ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnai\beam\quota.py", line 248, in __exit__
+    print(f"\n⚠️ {str(exc_val)}\n")
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode characters in position 2-3: character maps to <undefined>
+2026-04-04 17:59:51,307 | ERROR | app.services.etl | da0b9975-8da7-4426-8ff0-b330bfc04a10 | financial ETL failed for VNM
+Traceback (most recent call last):
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnai\beam\quota.py", line 326, in wrapper
+    guardian.verify(func.__name__, resource_type)
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnai\beam\quota.py", line 152, in verify
+    raise RateLimitExceeded(
+vnai.beam.quota.RateLimitExceeded: 
+============================================================
+⚠️  GIỚI HẠN API ĐÃ ĐẠT TỐI ĐA (Rate Limit Exceeded)
+============================================================
+
+📌 Bạn đã đạt giới hạn tối đa số lượt yêu cầu API trong 1 phút (minute).
+   (You have reached the maximum API request limit for this period)
+
+📊 Chi tiết (Details):
+   • Gói hiện tại: Khách (Guest)
+   • Giới hạn: 20 requests/phút
+   • Đã sử dụng: 20/20
+   • Chờ 9 giây để tiếp tục (Wait to retry)
+
+💡 Giải pháp (Solutions):
+   1️⃣ Chờ 9 giây rồi thử lại
+      (Wait and retry)
+   2️⃣ Tham gia gói thành viên tài trợ để sử dụng không bị gián đoạn
+      (Join sponsor membership for uninterrupted access)
+
+🚀 Nâng cấp (Upgrade):
+   • Phiên bản cộng đồng (60 request/phút - Community):
+     Đăng ký API key miễn phí: https://vnstocks.com/login
+   • Gói thành viên tài trợ (180-600 request/phút - Sponsor):
+     Tham gia: https://vnstocks.com/insiders-program
+     Sau khi tham gia tài trợ, cài bộ thư viện riêng vnstock_data theo hướng dẫn https://vnstocks.com/onboard-member
+
+============================================================
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\work\code\other\chung_khoan\backend\app\services\etl.py", line 40, in run
+    fin_data = self.provider.fetch_financial(symbol, run_date)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\work\code\other\chung_khoan\backend\app\services\data_provider.py", line 80, in fetch_financial
+    return self._fetch_financial_vnstock(symbol, snapshot_date)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\work\code\other\chung_khoan\backend\app\services\data_provider.py", line 132, in _fetch_financial_vnstock
+    ratio_df = stock.finance.ratio(period="year")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnstock\common\data.py", line 510, in ratio
+    return self._get_financial_data('ratio', symbol, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnstock\common\data.py", line 479, in _get_financial_data
+    return method(**processed_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnai\__init__.py", line 145, in wrapper
+    return _optimized_func[0](*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnai\beam\quota.py", line 325, in wrapper
+    with CleanErrorContext():
+         ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnai\beam\quota.py", line 248, in __exit__
+    print(f"\n⚠️ {str(exc_val)}\n")
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode characters in position 2-3: character maps to <undefined>
+2026-04-04 17:59:51,887 | ERROR | app.services.data_provider | da0b9975-8da7-4426-8ff0-b330bfc04a10 | fetch_news via vnstock failed for VNM: 'charmap' codec can't encode characters in position 2-3: character maps to <undefined>
+Traceback (most recent call last):
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnai\beam\quota.py", line 326, in wrapper
+    guardian.verify(func.__name__, resource_type)
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnai\beam\quota.py", line 152, in verify
+    raise RateLimitExceeded(
+vnai.beam.quota.RateLimitExceeded: 
+============================================================
+⚠️  GIỚI HẠN API ĐÃ ĐẠT TỐI ĐA (Rate Limit Exceeded)
+============================================================
+
+📌 Bạn đã đạt giới hạn tối đa số lượt yêu cầu API trong 1 phút (minute).
+   (You have reached the maximum API request limit for this period)
+
+📊 Chi tiết (Details):
+   • Gói hiện tại: Khách (Guest)
+   • Giới hạn: 20 requests/phút
+   • Đã sử dụng: 20/20
+   • Chờ 8 giây để tiếp tục (Wait to retry)
+
+💡 Giải pháp (Solutions):
+   1️⃣ Chờ 8 giây rồi thử lại
+      (Wait and retry)
+   2️⃣ Tham gia gói thành viên tài trợ để sử dụng không bị gián đoạn
+      (Join sponsor membership for uninterrupted access)
+
+🚀 Nâng cấp (Upgrade):
+   • Phiên bản cộng đồng (60 request/phút - Community):
+     Đăng ký API key miễn phí: https://vnstocks.com/login
+   • Gói thành viên tài trợ (180-600 request/phút - Sponsor):
+     Tham gia: https://vnstocks.com/insiders-program
+     Sau khi tham gia tài trợ, cài bộ thư viện riêng vnstock_data theo hướng dẫn https://vnstocks.com/onboard-member
+
+============================================================
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\work\code\other\chung_khoan\backend\app\services\data_provider.py", line 89, in fetch_news
+    return self._fetch_news_vnstock(symbol, limit)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\work\code\other\chung_khoan\backend\app\services\data_provider.py", line 193, in _fetch_news_vnstock
+    news_df = stock.company.news()
+              ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnstock\common\data.py", line 388, in news
+    return self.data_source.news(**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnai\__init__.py", line 145, in wrapper
+    return _optimized_func[0](*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnai\beam\quota.py", line 325, in wrapper
+    with CleanErrorContext():
+         ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnai\beam\quota.py", line 248, in __exit__
+    print(f"\n⚠️ {str(exc_val)}\n")
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode characters in position 2-3: character maps to <undefined>
+2026-04-04 17:59:51,890 | ERROR | app.services.etl | da0b9975-8da7-4426-8ff0-b330bfc04a10 | news ETL failed for VNM
+Traceback (most recent call last):
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnai\beam\quota.py", line 326, in wrapper
+    guardian.verify(func.__name__, resource_type)
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnai\beam\quota.py", line 152, in verify
+    raise RateLimitExceeded(
+vnai.beam.quota.RateLimitExceeded: 
+============================================================
+⚠️  GIỚI HẠN API ĐÃ ĐẠT TỐI ĐA (Rate Limit Exceeded)
+============================================================
+
+📌 Bạn đã đạt giới hạn tối đa số lượt yêu cầu API trong 1 phút (minute).
+   (You have reached the maximum API request limit for this period)
+
+📊 Chi tiết (Details):
+   • Gói hiện tại: Khách (Guest)
+   • Giới hạn: 20 requests/phút
+   • Đã sử dụng: 20/20
+   • Chờ 8 giây để tiếp tục (Wait to retry)
+
+💡 Giải pháp (Solutions):
+   1️⃣ Chờ 8 giây rồi thử lại
+      (Wait and retry)
+   2️⃣ Tham gia gói thành viên tài trợ để sử dụng không bị gián đoạn
+      (Join sponsor membership for uninterrupted access)
+
+🚀 Nâng cấp (Upgrade):
+   • Phiên bản cộng đồng (60 request/phút - Community):
+     Đăng ký API key miễn phí: https://vnstocks.com/login
+   • Gói thành viên tài trợ (180-600 request/phút - Sponsor):
+     Tham gia: https://vnstocks.com/insiders-program
+     Sau khi tham gia tài trợ, cài bộ thư viện riêng vnstock_data theo hướng dẫn https://vnstocks.com/onboard-member
+
+============================================================
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\work\code\other\chung_khoan\backend\app\services\etl.py", line 48, in run
+    news_items = self.provider.fetch_news(symbol)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\work\code\other\chung_khoan\backend\app\services\data_provider.py", line 89, in fetch_news
+    return self._fetch_news_vnstock(symbol, limit)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\work\code\other\chung_khoan\backend\app\services\data_provider.py", line 193, in _fetch_news_vnstock
+    news_df = stock.company.news()
+              ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnstock\common\data.py", line 388, in news
+    return self.data_source.news(**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnai\__init__.py", line 145, in wrapper
+    return _optimized_func[0](*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnai\beam\quota.py", line 325, in wrapper
+    with CleanErrorContext():
+         ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnai\beam\quota.py", line 248, in __exit__
+    print(f"\n⚠️ {str(exc_val)}\n")
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode characters in position 2-3: character maps to <undefined>
+2026-04-04 20:50:19,153 | ERROR | vnstock.explorer.vci.financial | 499302de-1a01-4851-ab0e-6c5932db690e | Error processing financial report data: Failed to fetch data: 502 - Bad Gateway
+2026-04-04 20:50:19,156 | ERROR | vnstock.explorer.vci.financial | 499302de-1a01-4851-ab0e-6c5932db690e | Error processing report 'Chỉ tiêu lưu chuyển tiền tệ': Failed to fetch data: 502 - Bad Gateway
+2026-04-04 20:50:19,158 | ERROR | vnstock.common.data | 499302de-1a01-4851-ab0e-6c5932db690e | Error fetching cash_flow: Failed to fetch data: 502 - Bad Gateway
+2026-04-04 20:50:19,159 | ERROR | app.services.data_provider | 499302de-1a01-4851-ab0e-6c5932db690e | fetch_financial failed symbol=PNJ attempt=1
+Traceback (most recent call last):
+  File "C:\work\code\other\chung_khoan\backend\app\services\data_provider.py", line 437, in _call_with_retry
+    return fn()
+           ^^^^
+  File "C:\work\code\other\chung_khoan\backend\app\services\data_provider.py", line 120, in <lambda>
+    lambda: self._fetch_financial_vnstock(symbol, snapshot_date),
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\work\code\other\chung_khoan\backend\app\services\data_provider.py", line 277, in _fetch_financial_vnstock
+    cf_df = stock.finance.cash_flow(period="year")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnstock\common\data.py", line 505, in cash_flow
+    return self._get_financial_data('cash_flow', symbol, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnstock\common\data.py", line 479, in _get_financial_data
+    return method(**processed_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnai\__init__.py", line 145, in wrapper
+    return _optimized_func[0](*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnai\beam\quota.py", line 363, in wrapper
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnstock\explorer\vci\financial.py", line 498, in cash_flow
+    return self._process_report('Chỉ tiêu lưu chuyển tiền tệ', period=period, lang=lang, dropna=dropna, show_log=show_log)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnstock\explorer\vci\financial.py", line 406, in _process_report
+    primary_reports = self._get_report(period=effective_period, lang=lang, show_log=show_log)[0]
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnstock\explorer\vci\financial.py", line 261, in _get_report
+    primary_dfs, other_reports = self._ratio_mapping(ratio_df, lang=lang, show_log=show_log)
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnai\__init__.py", line 145, in wrapper
+    return _optimized_func[0](*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnai\beam\quota.py", line 363, in wrapper
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnstock\explorer\vci\financial.py", line 300, in _ratio_mapping
+    mapping_df = self._get_ratio_dict(get_all=False)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnstock\explorer\vci\financial.py", line 184, in _get_ratio_dict
+    response_data = client.send_request(
+                    ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnstock\core\utils\client.py", line 229, in send_request
+    return send_request_direct(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnstock\core\utils\client.py", line 293, in send_request_direct
+    raise ConnectionError(msg)
+ConnectionError: Failed to fetch data: 502 - Bad Gateway
+2026-04-04 20:50:19,164 | ERROR | app.services.etl | 499302de-1a01-4851-ab0e-6c5932db690e | financial ETL failed for PNJ
+Traceback (most recent call last):
+  File "C:\work\code\other\chung_khoan\backend\app\services\data_provider.py", line 437, in _call_with_retry
+    return fn()
+           ^^^^
+  File "C:\work\code\other\chung_khoan\backend\app\services\data_provider.py", line 120, in <lambda>
+    lambda: self._fetch_financial_vnstock(symbol, snapshot_date),
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\work\code\other\chung_khoan\backend\app\services\data_provider.py", line 277, in _fetch_financial_vnstock
+    cf_df = stock.finance.cash_flow(period="year")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnstock\common\data.py", line 505, in cash_flow
+    return self._get_financial_data('cash_flow', symbol, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnstock\common\data.py", line 479, in _get_financial_data
+    return method(**processed_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnai\__init__.py", line 145, in wrapper
+    return _optimized_func[0](*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnai\beam\quota.py", line 363, in wrapper
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnstock\explorer\vci\financial.py", line 498, in cash_flow
+    return self._process_report('Chỉ tiêu lưu chuyển tiền tệ', period=period, lang=lang, dropna=dropna, show_log=show_log)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnstock\explorer\vci\financial.py", line 406, in _process_report
+    primary_reports = self._get_report(period=effective_period, lang=lang, show_log=show_log)[0]
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnstock\explorer\vci\financial.py", line 261, in _get_report
+    primary_dfs, other_reports = self._ratio_mapping(ratio_df, lang=lang, show_log=show_log)
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnai\__init__.py", line 145, in wrapper
+    return _optimized_func[0](*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnai\beam\quota.py", line 363, in wrapper
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnstock\explorer\vci\financial.py", line 300, in _ratio_mapping
+    mapping_df = self._get_ratio_dict(get_all=False)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnstock\explorer\vci\financial.py", line 184, in _get_ratio_dict
+    response_data = client.send_request(
+                    ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnstock\core\utils\client.py", line 229, in send_request
+    return send_request_direct(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnstock\core\utils\client.py", line 293, in send_request_direct
+    raise ConnectionError(msg)
+ConnectionError: Failed to fetch data: 502 - Bad Gateway
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\work\code\other\chung_khoan\backend\app\services\etl.py", line 58, in run
+    fin_data = self.provider.fetch_financial(symbol, run_date)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\work\code\other\chung_khoan\backend\app\services\data_provider.py", line 119, in fetch_financial
+    return self._call_with_retry(
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\work\code\other\chung_khoan\backend\app\services\data_provider.py", line 462, in _call_with_retry
+    raise RuntimeError(f"{op_name} failed for {symbol}: {last_error}") from last_error
+RuntimeError: fetch_financial failed for PNJ: Failed to fetch data: 502 - Bad Gateway
+2026-04-04 21:36:10,899 | ERROR | app.services.data_provider | e5205d89-ba30-45ff-8c89-6629a83982d6 | fetch_financial failed symbol=VCB attempt=1
+Traceback (most recent call last):
+  File "C:\work\code\other\chung_khoan\backend\app\services\data_provider.py", line 537, in _call_with_retry
+    return fn()
+           ^^^^
+  File "C:\work\code\other\chung_khoan\backend\app\services\data_provider.py", line 120, in <lambda>
+    lambda: self._fetch_financial_vnstock(symbol, snapshot_date),
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\work\code\other\chung_khoan\backend\app\services\data_provider.py", line 375, in _fetch_financial_vnstock
+    stock = Vnstock().stock(symbol=symbol, source="VCI")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnstock\common\client.py", line 114, in stock
+    return StockComponents(
+           ^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnstock\common\data.py", line 140, in __init__
+    self._initialize_components()
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnstock\common\data.py", line 146, in _initialize_components
+    self.company = Company(self.symbol, source=self.source)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnstock\common\data.py", line 337, in __init__
+    super().__init__(symbol, source)
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnstock\common\data.py", line 92, in __init__
+    self.data_source = self._load_data_source()
+                       ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnstock\common\data.py", line 342, in _load_data_source
+    return module.Company(self.symbol)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnstock\explorer\vci\company.py", line 66, in __init__
+    self.raw_data = self._fetch_data()
+                    ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnstock\explorer\vci\company.py", line 90, in _fetch_data
+    response_data = client.send_request(
+                    ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnstock\core\utils\client.py", line 229, in send_request
+    return send_request_direct(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnstock\core\utils\client.py", line 293, in send_request_direct
+    raise ConnectionError(msg)
+ConnectionError: Failed to fetch data: 502 - Bad Gateway
+2026-04-04 21:36:10,906 | ERROR | app.services.etl | e5205d89-ba30-45ff-8c89-6629a83982d6 | financial ETL failed for VCB
+Traceback (most recent call last):
+  File "C:\work\code\other\chung_khoan\backend\app\services\data_provider.py", line 537, in _call_with_retry
+    return fn()
+           ^^^^
+  File "C:\work\code\other\chung_khoan\backend\app\services\data_provider.py", line 120, in <lambda>
+    lambda: self._fetch_financial_vnstock(symbol, snapshot_date),
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\work\code\other\chung_khoan\backend\app\services\data_provider.py", line 375, in _fetch_financial_vnstock
+    stock = Vnstock().stock(symbol=symbol, source="VCI")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnstock\common\client.py", line 114, in stock
+    return StockComponents(
+           ^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnstock\common\data.py", line 140, in __init__
+    self._initialize_components()
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnstock\common\data.py", line 146, in _initialize_components
+    self.company = Company(self.symbol, source=self.source)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnstock\common\data.py", line 337, in __init__
+    super().__init__(symbol, source)
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnstock\common\data.py", line 92, in __init__
+    self.data_source = self._load_data_source()
+                       ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnstock\common\data.py", line 342, in _load_data_source
+    return module.Company(self.symbol)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnstock\explorer\vci\company.py", line 66, in __init__
+    self.raw_data = self._fetch_data()
+                    ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnstock\explorer\vci\company.py", line 90, in _fetch_data
+    response_data = client.send_request(
+                    ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnstock\core\utils\client.py", line 229, in send_request
+    return send_request_direct(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HLC\miniconda3\envs\kyluat-dautu\Lib\site-packages\vnstock\core\utils\client.py", line 293, in send_request_direct
+    raise ConnectionError(msg)
+ConnectionError: Failed to fetch data: 502 - Bad Gateway
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\work\code\other\chung_khoan\backend\app\services\etl.py", line 58, in run
+    fin_data = self.provider.fetch_financial(symbol, run_date)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\work\code\other\chung_khoan\backend\app\services\data_provider.py", line 119, in fetch_financial
+    return self._call_with_retry(
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\work\code\other\chung_khoan\backend\app\services\data_provider.py", line 562, in _call_with_retry
+    raise RuntimeError(f"{op_name} failed for {symbol}: {last_error}") from last_error
+RuntimeError: fetch_financial failed for VCB: Failed to fetch data: 502 - Bad Gateway
+2026-04-04 22:07:06,140 | ERROR | vnstock.explorer.vci.financial | 008e0278-e093-441f-96d0-220e21635053 | Error processing financial report data: Failed to fetch data: 502 - Bad Gateway
+2026-04-04 22:07:06,142 | ERROR | vnstock.explorer.vci.financial | 008e0278-e093-441f-96d0-220e21635053 | Error processing report 'Chỉ tiêu kết quả kinh doanh': Failed to fetch data: 502 - Bad Gateway
+2026-04-04 22:07:06,143 | ERROR | vnstock.common.data | 008e0278-e093-441f-96d0-220e21635053 | Error fetching income_statement: Failed to fetch data: 502 - Bad Gateway
+2026-04-05 12:28:57,352 | ERROR | vnstock.explorer.vci.financial | ff601da0-04c7-4e85-a2fc-f96e4a8dc3b4 | Error processing financial report data: Failed to fetch data: 502 - Bad Gateway
+2026-04-05 12:28:57,357 | ERROR | vnstock.explorer.vci.financial | ff601da0-04c7-4e85-a2fc-f96e4a8dc3b4 | Error retrieving financial ratios: Failed to fetch data: 502 - Bad Gateway
+2026-04-05 12:28:57,359 | ERROR | vnstock.common.data | ff601da0-04c7-4e85-a2fc-f96e4a8dc3b4 | Error fetching ratio: Failed to fetch data: 502 - Bad Gateway
