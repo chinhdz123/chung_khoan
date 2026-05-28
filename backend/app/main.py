@@ -12,7 +12,7 @@ from app.config import get_settings
 from app.database import SessionLocal, init_db
 from app.logging_config import configure_logging
 from app.request_context import request_id_ctx
-from app.routers import advice, alerts, health, market, portfolio
+from app.routers import advice, alerts, health, market, notes, portfolio
 from app.services.scheduler import build_scheduler
 from app.services.user_service import ensure_default_user
 
@@ -53,6 +53,7 @@ app.include_router(portfolio.router)
 app.include_router(market.router)
 app.include_router(alerts.router)
 app.include_router(advice.router)
+app.include_router(notes.router)
 
 
 @app.middleware("http")
@@ -100,3 +101,8 @@ def settings_watchlist_page(request: Request):
 @app.get("/settings/holdings", response_class=HTMLResponse)
 def settings_holdings_page(request: Request):
     return templates.TemplateResponse("settings_holdings.html", {"request": request, "app_name": settings.app_name})
+
+
+@app.get("/notes", response_class=HTMLResponse)
+def notes_page(request: Request):
+    return templates.TemplateResponse("notes.html", {"request": request, "app_name": settings.app_name})

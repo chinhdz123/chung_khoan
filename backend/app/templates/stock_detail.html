@@ -24,6 +24,7 @@
         <div class="nav-links" id="navLinks">
           <a class="nav-link" href="/stocks">Danh sách</a>
           <a class="nav-link" href="/settings/holdings">Nắm giữ</a>
+          <a class="nav-link" href="/notes">Nhật ký</a>
         </div>
         <div class="nav-actions">
           <button class="theme-toggle" id="themeToggle" aria-label="Chuyển theme">🌙</button>
@@ -45,6 +46,7 @@
           <button class="tab-btn" data-tab="tab-dividend">Cổ tức</button>
           <button class="tab-btn" data-tab="tab-decision">Khuyến nghị</button>
           <button class="tab-btn" data-tab="tab-alerts">Cảnh báo</button>
+          <button class="tab-btn" data-tab="tab-notes">Nhật ký</button>
         </div>
 
         <div class="tab-content active" id="tab-market">
@@ -70,6 +72,16 @@
         <div class="tab-content" id="tab-alerts">
           <h3>Cảnh báo gần đây</h3>
           <div id="alertsCard" class="list"></div>
+        </div>
+
+        <div class="tab-content" id="tab-notes">
+          <h3>Nhật ký của bạn (${symbol})</h3>
+          <div id="notesContainer">
+            <div class="card muted">Đang tải nhật ký...</div>
+          </div>
+          <div style="margin-top: 1rem;">
+             <a href="/notes" style="text-decoration:none; padding:8px 16px; border:1px solid var(--border-color); border-radius:4px; color:var(--text-color); background:var(--surface-bg);">Quản lý Nhật Ký</a>
+          </div>
         </div>
       </section>
 

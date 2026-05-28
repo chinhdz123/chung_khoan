@@ -171,6 +171,42 @@ async function loadAlerts() {
   }
 }
 
+async function loadNotes() {
+  const notesCont = document.getElementById("notesContainer");
+  if (!notesCont) return;
+  try {
+    const res = await fetch(`/api/notes?symbol=${encodeURIComponent(symbol)}`);
+    if (!res.ok) throw new Error("Failed to fetch");
+    const notes = await res.json();
+    if (!notes.length) {
+      notesCont.innerHTML = '<div class="card muted">Bạn chưa có nhật ký nào cho mã này.</div>';
+      return;
+    }
+    
+    function escapeHtml(str) {
+      return (str || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+    }
+
+    notesCont.innerHTML = notes.map(n => {
+      const dateStr = new Date(n.created_at).toLocaleString('vi-VN');
+      let tagsArr = [];
+      try { tagsArr = JSON.parse(n.tags_json); } catch(e) {}
+      const tagsHtml = tagsArr.length ? `<span class="pill" style="font-size:0.8em; margin-bottom: 5px; display: inline-block;">${escapeHtml(tagsArr.join(', '))}</span>` : '';
+      return `
+        <div class="card" style="margin-bottom: 10px; border-left: 3px solid var(--primary-color);">
+          <div style="display:flex; justify-content:space-between; align-items: flex-start; margin-bottom:5px">
+            <div>${tagsHtml}</div>
+            <div class="muted" style="font-size:0.85em">${dateStr}</div>
+          </div>
+          <div style="white-space: pre-wrap; font-size: 0.95em; line-height: 1.5;">${escapeHtml(n.content)}</div>
+        </div>
+      `;
+    }).join('');
+  } catch (err) {
+    notesCont.innerHTML = `<div class="card muted error">Lỗi tải nhật ký: ${err.message}</div>`;
+  }
+}
+
 async function loadHistory(days) {
   historyTableBody.innerHTML = "";
   historyEmpty.style.display = "none";
@@ -237,7 +273,7 @@ async function loadHistory(days) {
 
 async function bootstrap() {
   await loadSnapshot();
-  await Promise.all([loadDecision(), loadAlerts(), loadHistory(Number(daysSelect?.value || 5))]);
+  await Promise.all([loadDecision(), loadAlerts(), loadNotes(), loadHistory(Number(daysSelect?.value || 5))]);
 }
 
 if (daysSelect) {

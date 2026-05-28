@@ -151,3 +151,24 @@ class JobRunResult(BaseModel):
     ok: bool
     run_date: date
     details: dict
+
+
+class NoteBase(BaseModel):
+    symbol: str | None = None
+    tags_json: str = "[]"
+    content: str
+
+
+class NoteCreate(NoteBase):
+    pass
+
+
+class NoteUpdate(NoteBase):
+    pass
+
+
+class NoteResponse(NoteBase):
+    id: int
+    user_id: int
+    created_at: datetime
+    updated_at: datetime
